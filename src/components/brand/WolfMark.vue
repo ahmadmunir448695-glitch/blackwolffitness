@@ -1,0 +1,32 @@
+<script setup>
+/**
+ * The Black Wolf mark: a faceted, front-facing wolf head with slanted eyes.
+ * One path (even-odd fill) so it works at favicon size and as a large graphic.
+ */
+defineProps({
+  title: { type: String, default: '' },
+})
+</script>
+
+<template>
+  <svg
+    viewBox="0 0 64 64"
+    xmlns="http://www.w3.org/2000/svg"
+    :role="title ? 'img' : undefined"
+    :aria-hidden="title ? undefined : 'true'"
+    :aria-label="title || undefined"
+    focusable="false"
+  >
+    <path
+      fill="currentColor"
+      fill-rule="evenodd"
+      d="M10 4 L25 17 L32 13.5 L39 17 L54 4 L55.5 27 L61 36.5 L48 42 L40.5 54 L32 61 L23.5 54 L16 42 L3 36.5 L8.5 27 Z
+         M13.5 11 L21.5 18.5 L14.5 22.5 Z
+         M50.5 11 L42.5 18.5 L49.5 22.5 Z
+         M16.5 29 L28.5 32 L24 36 Z
+         M47.5 29 L35.5 32 L40 36 Z
+         M27.5 49 L36.5 49 L32 54.5 Z
+         M32 20 L34.2 30 L32 38 L29.8 30 Z"
+    />
+  </svg>
+</template>

@@ -1,0 +1,41 @@
+{
+  "name": "black-wolf-fitness-club",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend for Black Wolf Fitness Club \u2014 Vue 3, Vite, Vue Router, Tailwind CSS. API-ready, static-host friendly.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/postbuild.mjs",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "check:content": "node scripts/check-content.mjs",
+    "images:check": "node scripts/images.mjs check",
+    "images:download": "node scripts/images.mjs download",
+    "images:selfhost": "node scripts/images.mjs selfhost"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/big-shoulders-display": "^5.3.0",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.5.1",
+    "eslint": "^10.13.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "jsdom": "^29.1.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  }
+}

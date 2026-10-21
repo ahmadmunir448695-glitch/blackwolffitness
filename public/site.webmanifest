@@ -1,0 +1,13 @@
+{
+  "name": "Black Wolf Fitness Club",
+  "short_name": "Black Wolf",
+  "icons": [
+    { "src": "/favicon.png", "type": "image/png", "sizes": "64x64" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#0B0B0D",
+  "background_color": "#0B0B0D",
+  "display": "standalone",
+  "start_url": "/"
+}
