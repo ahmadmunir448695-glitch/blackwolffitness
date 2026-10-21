@@ -12,7 +12,7 @@
  *  Fields
  *    slug            URL of the profile page: /coaches/<slug>   (lowercase, dashes)
  *    name            Full name. Empty = shows "Name to be announced".
- *    role            Position, e.g. 'Head Coach'.
+ *    role            Position, e.g. 'Boxing Coach'.
  *    specializations Used by the filters on the Coaches page.
  *                    Use: 'Taekwondo', 'Boxing', 'Kickboxing', 'MMA',
  *                         'Fitness', 'Gymnastics', 'Special Kids'
@@ -38,7 +38,7 @@ export const coaches = [
   {
     slug: 'ahmad-munir',
     name: 'Ahmad Munir',
-    role: 'Head Coach · Taekwondo, Boxing & MMA',
+    role: 'Taekwondo, Boxing & MMA Coach',
     specializations: ['Taekwondo', 'Boxing', 'MMA', 'Fitness', 'Gymnastics', 'Special Kids'],
     programs: ['taekwondo', 'boxing', 'mma', 'general-fitness', 'gymnastics', 'special-kids-training'],
     photo: {
