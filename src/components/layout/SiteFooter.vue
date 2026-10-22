@@ -278,24 +278,39 @@ function toTop() {
   @apply border-ember/40 text-ember;
 }
 
-/* Giant footer wordmark: faint outline; on hover ember fills it letter by letter, left to right. */
+/*
+ * Giant footer wordmark: faint outline. On hover a soft-edged ember fill
+ * sweeps in from the first letter to the last, and drains back on leave.
+ */
 .wordmark {
   @apply relative grid cursor-default whitespace-nowrap text-center font-display text-[17.5vw] font-black uppercase leading-[0.92];
-  --wipe: 1.1s;
+  --ease: cubic-bezier(0.45, 0, 0.2, 1);
+  --wipe: 1.3s;
+  transform-origin: 50% 100%;
+  transition: transform 0.9s var(--ease);
 }
 .wordmark > span {
   grid-area: 1 / 1;
+  padding-block: 0.1em; /* room for the glow, identical on every layer so they stay aligned */
 }
 .wordmark__base {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.28);
-  transition: -webkit-text-stroke-color 0.6s ease;
+  transition: -webkit-text-stroke-color 0.8s var(--ease);
 }
 .wordmark__lit,
 .wordmark__glow {
-  /* Hidden behind a clip that slides open from the left edge. */
-  clip-path: inset(-30% 100% -30% -5%);
-  transition: clip-path var(--wipe) cubic-bezier(0.65, 0, 0.35, 1);
+  /* A wide gradient mask: opaque on the left, feathered edge, transparent on the right.
+     Sliding it from right to left reveals the letters with a soft leading edge. */
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+  -webkit-mask-size: 220% 100%;
+  mask-size: 220% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  transition: -webkit-mask-position var(--wipe) var(--ease), mask-position var(--wipe) var(--ease);
 }
 .wordmark__lit {
   background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, #ff5a1f 100%);
@@ -307,16 +322,21 @@ function toTop() {
   color: rgb(255 148 71 / 0.35);
   text-shadow: 0 0 16px rgb(255 148 71 / 0.75), 0 0 36px rgb(255 120 40 / 0.35);
 }
+.wordmark:hover {
+  transform: scale(1.015);
+}
 .wordmark:hover .wordmark__base {
   -webkit-text-stroke-color: var(--color-ember);
 }
 .wordmark:hover .wordmark__lit,
 .wordmark:hover .wordmark__glow {
-  clip-path: inset(-30% -5% -30% -5%);
+  -webkit-mask-position: 0% 0;
+  mask-position: 0% 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .contact-card, .contact-card:hover { transform: none; }
-  .wordmark { --wipe: 0.01s; }
+  .wordmark { --wipe: 0.01s; transition: none; }
+  .wordmark:hover { transform: none; }
 }
 </style>
