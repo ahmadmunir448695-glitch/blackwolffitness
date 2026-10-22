@@ -4,13 +4,14 @@ import { RouterLink } from 'vue-router'
 import BrandLogo from '../brand/BrandLogo.vue'
 import AppIcon from '../ui/AppIcon.vue'
 import PlaceholderText from '../ui/PlaceholderText.vue'
-import WhatsAppLink from './WhatsAppLink.vue'
+import emblem from '@/assets/brand/wolf-emblem.png'
 import { club, socialLabels } from '@/config/club.js'
 import { programLinks } from '@/config/navigation.js'
 import { telHref } from '@/utils/format.js'
 import { whatsappUrl } from '@/utils/whatsapp.js'
 
 const year = new Date().getFullYear()
+const chatUrl = whatsappUrl()
 
 /** "https://www.tiktok.com/@blackwolffitness" → "@blackwolffitness" */
 function handleFrom(url) {
@@ -27,7 +28,7 @@ const socials = computed(() =>
 /** Phone rows: the main line also opens WhatsApp. */
 const phones = computed(() =>
   [
-    club.contact.phone && { key: 'main', value: club.contact.phone, tel: telHref(club.contact.phone), whatsapp: whatsappUrl() },
+    club.contact.phone && { key: 'main', value: club.contact.phone, tel: telHref(club.contact.phone), whatsapp: chatUrl },
     club.contact.phoneAlt && { key: 'alt', value: club.contact.phoneAlt, tel: telHref(club.contact.phoneAlt), whatsapp: null },
   ].filter(Boolean),
 )
@@ -35,6 +36,9 @@ const phones = computed(() =>
 const hasContact = computed(() => phones.value.length || club.contact.email || socials.value.length)
 
 const address = computed(() => [...club.location.addressLines, club.location.city].filter(Boolean))
+
+/** Discipline ticker across the top of the footer. */
+const ticker = programLinks.map((p) => p.shortLabel)
 
 const clubLinks = [
   { label: 'About us', to: '/about' },
@@ -51,37 +55,59 @@ function toTop() {
 </script>
 
 <template>
-  <footer class="relative isolate overflow-hidden border-t border-line bg-coal">
-    <div class="glow-ember pointer-events-none absolute -bottom-72 left-1/2 -z-10 h-[36rem] w-[60rem] -translate-x-1/2 opacity-40" aria-hidden="true" />
-    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/60 to-transparent" aria-hidden="true" />
+  <footer class="relative isolate overflow-hidden bg-coal">
+    <!-- Discipline ticker -->
+    <div class="ticker relative border-y border-line bg-ink py-5" aria-hidden="true">
+      <div class="ticker__track">
+        <template v-for="copy in 2" :key="copy">
+          <span v-for="(item, i) in ticker" :key="`${copy}-${item}`" class="ticker__item">
+            <span :class="i % 2 ? 'ticker__word--outline' : 'ticker__word'">{{ item }}</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-ember"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" fill="currentColor" /></svg>
+          </span>
+        </template>
+      </div>
+    </div>
 
     <div class="site-container pt-16 lg:pt-20">
-      <!-- Brand row -->
-      <div class="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <RouterLink to="/" aria-label="Black Wolf Fitness Club, home" class="inline-block">
-            <BrandLogo size="lg" />
-          </RouterLink>
-          <p class="mt-5 flex items-center gap-3 font-display text-xl font-bold uppercase tracking-[0.18em] text-ash">
-            <span>Train</span><span class="h-1.5 w-1.5 rotate-45 bg-ember" aria-hidden="true" />
-            <span>Fight</span><span class="h-1.5 w-1.5 rotate-45 bg-ember" aria-hidden="true" />
-            <span>Grow</span>
-          </p>
+      <!-- Join panel -->
+      <section aria-labelledby="footer-join" class="join-panel">
+        <div class="join-panel__blob join-panel__blob--a" aria-hidden="true" />
+        <div class="join-panel__blob join-panel__blob--b" aria-hidden="true" />
+        <img :src="emblem" alt="" aria-hidden="true" class="join-panel__emblem" />
+
+        <div class="relative grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+          <div>
+            <p class="inline-flex items-center gap-2 rounded-full border border-ember/30 bg-ember/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-ember">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-60" />
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-ember" />
+              </span>
+              Now enrolling
+            </p>
+            <h2 id="footer-join" class="mt-6 font-display text-display font-black uppercase text-bone">
+              Ready to join<br /><span class="text-gradient-ember">the pack?</span>
+            </h2>
+            <p class="mt-5 max-w-xl text-lg leading-relaxed text-ash">
+              Taekwondo, Boxing, Kickboxing, MMA, Fitness, Gymnastics and Special Kids Training, coached for beginners and experienced athletes.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
+            <RouterLink :to="{ path: '/contact', query: { topic: 'trial' } }" class="join-btn join-btn--primary btn-sheen group">
+              <span>Book a trial session</span>
+              <span class="join-btn__icon bg-ink text-ember"><AppIcon name="arrowRight" class="h-4 w-4 transition-transform duration-300 group-hover:-rotate-45" /></span>
+            </RouterLink>
+            <a v-if="chatUrl" :href="chatUrl" target="_blank" rel="noopener noreferrer" class="join-btn join-btn--ghost group">
+              <span class="inline-flex items-center gap-2.5"><AppIcon name="whatsapp" class="h-5 w-5 text-ember" />Chat on WhatsApp</span>
+              <span class="join-btn__icon border border-line text-bone group-hover:border-ember group-hover:text-ember"><AppIcon name="arrowRight" class="h-4 w-4 transition-transform duration-300 group-hover:-rotate-45" /></span>
+              <span class="sr-only">(opens WhatsApp)</span>
+            </a>
+          </div>
         </div>
-        <div class="flex flex-wrap gap-3">
-          <WhatsAppLink />
-          <RouterLink
-            :to="{ path: '/contact', query: { topic: 'trial' } }"
-            class="btn-sheen cut-corner inline-flex h-12 items-center gap-2 bg-ember px-6 font-semibold text-ink transition-colors hover:bg-ember-hi"
-          >
-            Book a trial session
-            <AppIcon name="arrowRight" class="h-4 w-4" />
-          </RouterLink>
-        </div>
-      </div>
+      </section>
 
       <!-- Contact panel -->
-      <section v-if="hasContact" aria-labelledby="footer-contact" class="mt-12">
+      <section v-if="hasContact" aria-labelledby="footer-contact" class="mt-6">
         <h2 id="footer-contact" class="sr-only">Contact the club</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
           <!-- Phones -->
@@ -166,68 +192,95 @@ function toTop() {
       </section>
 
       <!-- Link columns -->
-      <div class="mt-14 grid gap-10 border-t border-line pt-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1.2fr]">
-        <nav aria-labelledby="footer-programs">
-          <h2 id="footer-programs" class="eyebrow">Programs</h2>
-          <ul class="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+      <div class="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 border-t border-line pt-14 lg:grid-cols-12 lg:gap-8">
+        <div class="col-span-2 lg:col-span-4">
+          <RouterLink to="/" aria-label="Black Wolf Fitness Club, home" class="inline-block">
+            <BrandLogo size="lg" />
+          </RouterLink>
+          <p class="mt-6 max-w-sm text-ash">{{ club.tagline }}</p>
+          <p class="mt-5 flex items-center gap-3 font-display text-lg font-bold uppercase tracking-[0.22em] text-smoke">
+            <span>Train</span><span class="h-1.5 w-1.5 rotate-45 bg-ember" aria-hidden="true" />
+            <span>Fight</span><span class="h-1.5 w-1.5 rotate-45 bg-ember" aria-hidden="true" />
+            <span>Grow</span>
+          </p>
+          <ul class="mt-7 flex gap-2.5" aria-label="Black Wolf on social media">
+            <li v-for="s in socials" :key="s.key">
+              <a :href="s.url" target="_blank" rel="noopener noreferrer" class="social-dot" :aria-label="`${s.label} (opens in a new tab)`">
+                <AppIcon :name="s.key" class="h-5 w-5" />
+              </a>
+            </li>
+            <li v-if="chatUrl">
+              <a :href="chatUrl" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="WhatsApp (opens WhatsApp)">
+                <AppIcon name="whatsapp" class="h-5 w-5" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <nav aria-labelledby="footer-programs" class="col-span-1 lg:col-span-3">
+          <h2 id="footer-programs" class="footer-heading"><span class="footer-heading__num">01</span>Programs</h2>
+          <ul class="mt-6 space-y-3.5">
             <li v-for="link in programLinks" :key="link.to">
-              <RouterLink
-                :to="link.to"
-                class="group inline-flex items-center transition-colors hover:text-bone"
-                :class="link.featured ? 'text-ember' : 'text-ash'"
-              >
-                <span class="h-px w-0 bg-ember transition-all duration-300 group-hover:mr-2 group-hover:w-4" aria-hidden="true" />
-                {{ link.label }}
+              <RouterLink :to="link.to" class="footer-link group" :class="link.featured ? 'text-ember' : ''">
+                <AppIcon name="arrowRight" class="footer-link__arrow" />
+                <span>{{ link.label }}</span>
+                <span v-if="link.featured" class="ml-1 h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_10px_2px_rgb(255_148_71/0.6)]" aria-hidden="true" />
               </RouterLink>
             </li>
           </ul>
         </nav>
 
-        <nav aria-labelledby="footer-club">
-          <h2 id="footer-club" class="eyebrow">Club</h2>
-          <ul class="mt-5 space-y-3">
+        <nav aria-labelledby="footer-club" class="col-span-1 lg:col-span-2">
+          <h2 id="footer-club" class="footer-heading"><span class="footer-heading__num">02</span>Club</h2>
+          <ul class="mt-6 space-y-3.5">
             <li v-for="link in clubLinks" :key="link.label">
-              <RouterLink :to="link.to" class="group inline-flex items-center text-ash transition-colors hover:text-bone">
-                <span class="h-px w-0 bg-ember transition-all duration-300 group-hover:mr-2 group-hover:w-4" aria-hidden="true" />
-                {{ link.label }}
+              <RouterLink :to="link.to" class="footer-link group">
+                <AppIcon name="arrowRight" class="footer-link__arrow" />
+                <span>{{ link.label }}</span>
               </RouterLink>
             </li>
           </ul>
         </nav>
 
-        <div class="sm:col-span-2 lg:col-span-1">
-          <h2 class="eyebrow">Visit</h2>
-          <div class="mt-5 space-y-5">
-            <div class="flex items-start gap-3">
-              <AppIcon name="pin" class="mt-0.5 h-5 w-5 shrink-0 text-ember" />
-              <address class="not-italic text-ash">
-                <template v-if="address.length">
-                  <span v-for="line in address" :key="line" class="block">{{ line }}</span>
-                </template>
-                <PlaceholderText v-else fallback="Address to be announced" hint="location in src/config/club.js" />
-              </address>
+        <div class="col-span-2 lg:col-span-3">
+          <h2 class="footer-heading"><span class="footer-heading__num">03</span>Visit</h2>
+          <div class="mt-6 space-y-3">
+            <div class="visit-row">
+              <span class="visit-row__icon"><AppIcon name="pin" class="h-[1.1rem] w-[1.1rem]" /></span>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-smoke">Location</p>
+                <address class="mt-0.5 not-italic text-bone">
+                  <template v-if="address.length">
+                    <span v-for="line in address" :key="line" class="block">{{ line }}</span>
+                  </template>
+                  <PlaceholderText v-else fallback="To be announced" hint="location in src/config/club.js" />
+                </address>
+              </div>
             </div>
-            <div class="flex items-start gap-3">
-              <AppIcon name="clock" class="mt-0.5 h-5 w-5 shrink-0 text-ember" />
-              <ul v-if="club.hours.length" class="space-y-1 text-ash">
-                <li v-for="row in club.hours" :key="row.days"><span class="text-bone">{{ row.days }}</span> · {{ row.hours }}</li>
-              </ul>
-              <p v-else class="text-ash"><PlaceholderText fallback="Opening hours to be announced" hint="hours in src/config/club.js" /></p>
+            <div class="visit-row">
+              <span class="visit-row__icon"><AppIcon name="clock" class="h-[1.1rem] w-[1.1rem]" /></span>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-smoke">Opening hours</p>
+                <ul v-if="club.hours.length" class="mt-0.5 space-y-0.5 text-bone">
+                  <li v-for="row in club.hours" :key="row.days">{{ row.days }} · <span class="text-ash">{{ row.hours }}</span></li>
+                </ul>
+                <div v-else class="mt-0.5 text-bone"><PlaceholderText fallback="To be announced" hint="hours in src/config/club.js" /></div>
+              </div>
             </div>
             <a
               v-if="club.location.mapLink"
               :href="club.location.mapLink"
               target="_blank"
               rel="noopener noreferrer"
-              class="link-ember inline-block text-sm font-semibold"
-            >Get directions<span class="sr-only"> (opens in a new tab)</span></a>
+              class="footer-link group gap-2 pt-1 text-sm font-semibold text-ember"
+            >Get directions <AppIcon name="arrowRight" class="h-4 w-4 transition-transform group-hover:translate-x-1" /><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Giant wordmark -->
-    <div class="mt-6 select-none overflow-hidden pt-10 pb-6" aria-hidden="true">
+    <div class="mt-10 select-none overflow-hidden pt-10 pb-6" aria-hidden="true">
       <div v-reveal="'up'" class="wordmark group">
         <span class="wordmark__base">Black Wolf</span>
         <span class="wordmark__glow">Black Wolf</span>
@@ -236,17 +289,19 @@ function toTop() {
     </div>
 
     <!-- Bottom bar -->
-    <div class="border-t border-line bg-ink/40">
-      <div class="site-container flex flex-col gap-4 py-5 text-sm text-smoke sm:flex-row sm:items-center sm:justify-between">
+    <div class="border-t border-line/80">
+      <div class="site-container flex flex-col gap-4 py-6 text-sm text-smoke sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ club.name }}. All rights reserved.</p>
-        <p class="hidden lg:block">{{ club.tagline }}</p>
+        <p class="hidden items-center gap-2 lg:flex">
+          <span class="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />{{ club.tagline }}
+        </p>
         <button
           type="button"
-          class="group inline-flex items-center gap-2 self-start font-semibold text-ash transition-colors hover:text-ember sm:self-auto"
+          class="group inline-flex items-center gap-3 self-start font-semibold text-ash transition-colors hover:text-bone sm:self-auto"
           @click="toTop"
         >
           Back to top
-          <span class="flex h-8 w-8 items-center justify-center border border-line transition-colors group-hover:border-ember">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-ink transition-all duration-300 group-hover:border-ember group-hover:bg-ember group-hover:text-ink">
             <AppIcon name="arrowRight" class="h-4 w-4 -rotate-90 transition-transform duration-300 group-hover:-translate-y-0.5" />
           </span>
         </button>
@@ -276,6 +331,121 @@ function toTop() {
 }
 .contact-pill--wa {
   @apply border-ember/40 text-ember;
+}
+
+
+/* Discipline ticker */
+.ticker {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: bw-marquee 38s linear infinite;
+}
+.ticker:hover .ticker__track {
+  animation-play-state: paused;
+}
+.ticker__item {
+  @apply flex items-center gap-8 pr-8 font-display text-4xl font-black uppercase leading-none whitespace-nowrap sm:text-5xl;
+}
+.ticker__word {
+  @apply text-bone;
+}
+.ticker__word--outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.25px rgb(255 255 255 / 0.45);
+}
+
+/* Join panel */
+.join-panel {
+  @apply relative overflow-hidden rounded-[2rem] border border-line p-7 sm:p-10 lg:p-14;
+  background: linear-gradient(150deg, #1f1f26 0%, var(--color-ink) 70%);
+}
+.join-panel::before {
+  /* hairline ember highlight along the top edge */
+  content: '';
+  position: absolute;
+  inset: 0 10% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(255 148 71 / 0.8), transparent);
+}
+.join-panel__blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
+}
+.join-panel__blob--a {
+  width: 26rem; height: 26rem; right: -6rem; top: -10rem;
+  background: rgb(255 120 40 / 0.28);
+  animation: footer-float 12s ease-in-out infinite;
+}
+.join-panel__blob--b {
+  width: 20rem; height: 20rem; left: 30%; bottom: -12rem;
+  background: rgb(255 90 31 / 0.16);
+  animation: footer-float 16s ease-in-out infinite reverse;
+}
+.join-panel__emblem {
+  position: absolute;
+  right: -3rem;
+  bottom: -4rem;
+  width: 22rem;
+  opacity: 0.07;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  filter: grayscale(1);
+}
+@keyframes footer-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-2.5rem, 1.5rem); }
+}
+.join-btn {
+  @apply inline-flex h-16 items-center justify-between gap-4 rounded-full pr-2 pl-7 text-base font-semibold transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5;
+}
+.join-btn--primary {
+  @apply bg-ember text-ink hover:bg-ember-hi;
+  box-shadow: 0 14px 36px -14px rgb(255 148 71 / 0.7);
+}
+.join-btn--ghost {
+  @apply border border-line bg-ink/60 text-bone backdrop-blur hover:border-ember/60;
+}
+.join-btn__icon {
+  @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-colors duration-300;
+}
+
+/* Link columns */
+.footer-heading {
+  @apply flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-bone;
+}
+.footer-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-line), transparent);
+}
+.footer-heading__num {
+  @apply font-display text-base font-bold tracking-normal text-ember;
+}
+.footer-link {
+  @apply inline-flex items-center text-ash transition-colors duration-300 hover:text-bone;
+}
+.footer-link__arrow {
+  @apply h-3.5 w-0 shrink-0 -translate-x-2 text-ember opacity-0 transition-all duration-300;
+}
+.footer-link:hover .footer-link__arrow,
+.footer-link:focus-visible .footer-link__arrow {
+  @apply mr-2 w-3.5 translate-x-0 opacity-100;
+}
+.social-dot {
+  @apply flex h-11 w-11 items-center justify-center rounded-full border border-line bg-ink/60 text-ash transition-all duration-300 hover:-translate-y-1 hover:border-ember hover:bg-ember hover:text-ink;
+}
+.visit-row {
+  @apply flex items-start gap-3.5 rounded-2xl border border-line/70 bg-ink/40 p-4;
+}
+.visit-row__icon {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember;
 }
 
 /*
@@ -338,5 +508,6 @@ function toTop() {
   .contact-card, .contact-card:hover { transform: none; }
   .wordmark { --wipe: 0.01s; transition: none; }
   .wordmark:hover { transform: none; }
+  .ticker__track, .join-panel__blob { animation: none; }
 }
 </style>
