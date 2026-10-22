@@ -32,12 +32,6 @@ const phones = computed(() =>
   ].filter(Boolean),
 )
 
-/** One handle when every network uses the same name, e.g. "@blackwolffitness". */
-const socialHandle = computed(() => {
-  const handles = [...new Set(socials.value.map((s) => s.handle))]
-  return handles.length === 1 ? handles[0] : ''
-})
-
 const hasContact = computed(() => phones.value.length || club.contact.email || socials.value.length)
 
 const address = computed(() => [...club.location.addressLines, club.location.city].filter(Boolean))
@@ -142,15 +136,27 @@ function toTop() {
           <!-- Socials -->
           <div v-if="socials.length" class="contact-card flex flex-col lg:col-span-3">
             <div class="flex items-center gap-3">
-              <span class="contact-icon"><AppIcon name="heart" class="h-5 w-5" /></span>
-              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Follow the pack</p>
+              <span class="contact-icon"><AppIcon name="users" class="h-5 w-5" /></span>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Follow us</p>
             </div>
-            <p v-if="socialHandle" class="mt-5 text-lg font-semibold text-bone sm:text-xl">{{ socialHandle }}</p>
-            <ul class="mt-auto flex flex-wrap gap-2 pt-5">
+            <ul class="mt-5 divide-y divide-line/70 [&>li:first-child>a]:pt-0 [&>li:last-child>a]:pb-0">
               <li v-for="s in socials" :key="s.key">
-                <a :href="s.url" target="_blank" rel="noopener noreferrer" class="contact-pill">
-                  <AppIcon :name="s.key" class="h-4 w-4" />{{ s.label }}
-                  <span v-if="!socialHandle" class="text-smoke">{{ s.handle }}</span>
+                <a
+                  :href="s.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 py-3 transition-colors duration-300"
+                >
+                  <span
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-ink/60 text-bone transition-colors duration-300 group-hover:border-ember group-hover:bg-ember group-hover:text-ink"
+                  >
+                    <AppIcon :name="s.key" class="h-[1.15rem] w-[1.15rem]" />
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-xs font-semibold uppercase tracking-[0.16em] text-smoke">{{ s.label }}</span>
+                    <span class="block truncate font-semibold text-bone transition-colors duration-300 group-hover:text-ember">{{ s.handle }}</span>
+                  </span>
+                  <AppIcon name="arrowRight" class="h-4 w-4 shrink-0 -rotate-45 text-smoke transition-all duration-300 group-hover:rotate-0 group-hover:text-ember" />
                   <span class="sr-only">(opens in a new tab)</span>
                 </a>
               </li>
