@@ -14,7 +14,7 @@ defineProps({
       width="256"
       height="256"
       decoding="async"
-      class="shrink-0 drop-shadow-[0_0_12px_rgb(255_148_71/0.25)] transition-transform duration-500 group-hover/logo:-rotate-6 group-hover/logo:scale-105"
+      class="shrink-0 drop-shadow-[0_0_12px_rgb(247_134_15/0.25)] transition-transform duration-500 group-hover/logo:-rotate-6 group-hover/logo:scale-105"
       :class="size === 'lg' ? 'h-20 w-20' : 'h-11 w-11'"
     />
     <span class="flex flex-col leading-none">

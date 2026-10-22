@@ -24,7 +24,7 @@ defineProps({
     role="img"
     :aria-label="`Photo of ${coach.name || coach.role} coming soon`"
   >
-    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_bottom,rgb(255_148_71/0.22),transparent_65%)] transition-opacity duration-500 group-hover:opacity-100 sm:opacity-60" aria-hidden="true" />
+    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_bottom,rgb(247_134_15/0.22),transparent_65%)] transition-opacity duration-500 group-hover:opacity-100 sm:opacity-60" aria-hidden="true" />
     <img
       :src="emblem"
       alt=""

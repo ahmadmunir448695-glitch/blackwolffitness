@@ -34,7 +34,7 @@ defineProps({
         <ClawMarks
           animate
           :delay="0.6"
-          class="pointer-events-none absolute -right-6 -top-10 z-10 hidden h-40 text-ember drop-shadow-[0_0_20px_rgb(255_148_71/0.5)] lg:block"
+          class="pointer-events-none absolute -right-6 -top-10 z-10 hidden h-40 text-ember drop-shadow-[0_0_20px_rgb(247_134_15/0.5)] lg:block"
         />
         <div class="anim-fade-up" style="animation-delay: 0.2s">
           <SmartImage

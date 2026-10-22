@@ -15,7 +15,7 @@ defineProps({
     <ol class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <li v-for="(step, i) in section.steps" :key="step.name" class="soft-round relative overflow-hidden bg-coal p-6 pt-16">
         <span
-          class="absolute left-6 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#ff9447] font-display text-lg font-black text-[#0b0b0d]"
+          class="absolute left-6 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-ember font-display text-lg font-black text-ink"
           aria-hidden="true"
         >{{ i + 1 }}</span>
         <span class="sr-only">Step {{ i + 1 }}:</span>

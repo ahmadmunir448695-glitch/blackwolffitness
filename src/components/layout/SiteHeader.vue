@@ -70,7 +70,11 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
                 @click="navigate"
               >
                 {{ item.label }}
-                <span v-if="isExactActive" class="absolute inset-x-3 bottom-0 h-0.5 bg-ember" aria-hidden="true" />
+                <span
+                  class="absolute inset-x-3 bottom-0 h-0.5 origin-left bg-gradient-to-r from-ember-hi to-ember transition-transform duration-300 ease-out"
+                  :class="isExactActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
+                  aria-hidden="true"
+                />
               </a>
             </RouterLink>
           </li>

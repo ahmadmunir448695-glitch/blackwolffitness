@@ -93,7 +93,7 @@ const reassurance = ['Parent consultation first', 'Individualized Support', 'Sup
         </div>
       </div>
       <div class="relative">
-        <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#ff9447]/35" aria-hidden="true" />
+        <div class="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-ember/35" aria-hidden="true" />
         <SmartImage :image="hero.image" priority sizes="(min-width: 1024px) 45vw, 100vw" class="soft-round relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]" />
       </div>
     </div>

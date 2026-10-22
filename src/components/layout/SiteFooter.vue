@@ -93,7 +93,7 @@ function toTop() {
           </div>
 
           <div class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
-            <RouterLink :to="{ path: '/contact', query: { topic: 'trial' } }" class="join-btn join-btn--primary btn-sheen group">
+            <RouterLink :to="{ path: '/contact', query: { topic: 'trial' } }" class="join-btn join-btn--primary btn-molten btn-sheen group">
               <span>Book a trial session</span>
               <span class="join-btn__icon bg-ink text-ember"><AppIcon name="arrowRight" class="h-4 w-4 transition-transform duration-300 group-hover:-rotate-45" /></span>
             </RouterLink>
@@ -224,7 +224,7 @@ function toTop() {
               <RouterLink :to="link.to" class="footer-link group" :class="link.featured ? 'text-ember' : ''">
                 <AppIcon name="arrowRight" class="footer-link__arrow" />
                 <span>{{ link.label }}</span>
-                <span v-if="link.featured" class="ml-1 h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_10px_2px_rgb(255_148_71/0.6)]" aria-hidden="true" />
+                <span v-if="link.featured" class="ml-1 h-1.5 w-1.5 rounded-full bg-ember shadow-[0_0_10px_2px_var(--color-ember)]" aria-hidden="true" />
               </RouterLink>
             </li>
           </ul>
@@ -316,12 +316,12 @@ function toTop() {
 .contact-card {
   @apply relative overflow-hidden rounded-2xl border border-line p-6 transition-[border-color,transform,box-shadow] duration-500 ease-out;
   background:
-    radial-gradient(120% 140% at 0% 0%, rgb(255 148 71 / 0.07), transparent 55%),
-    linear-gradient(160deg, var(--color-iron), rgb(11 11 13 / 0.6));
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--color-ember) 7%, transparent), transparent 55%),
+    linear-gradient(160deg, var(--color-iron), color-mix(in srgb, var(--color-ink) 60%, transparent));
 }
 .contact-card:hover {
   @apply -translate-y-1 border-ember/50;
-  box-shadow: 0 18px 40px -24px rgb(255 148 71 / 0.45);
+  box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--color-ember) 45%, transparent);
 }
 .contact-icon {
   @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ember/10 text-ember ring-1 ring-ember/25;
@@ -361,7 +361,7 @@ function toTop() {
 /* Join panel */
 .join-panel {
   @apply relative overflow-hidden rounded-[2rem] border border-line p-7 sm:p-10 lg:p-14;
-  background: linear-gradient(150deg, #1f1f26 0%, var(--color-ink) 70%);
+  background: linear-gradient(150deg, #1c1c1c 0%, var(--color-ink) 70%);
 }
 .join-panel::before {
   /* hairline ember highlight along the top edge */
@@ -369,7 +369,7 @@ function toTop() {
   position: absolute;
   inset: 0 10% auto;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgb(255 148 71 / 0.8), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-ember) 80%, transparent), transparent);
 }
 .join-panel__blob {
   position: absolute;
@@ -379,12 +379,12 @@ function toTop() {
 }
 .join-panel__blob--a {
   width: 26rem; height: 26rem; right: -6rem; top: -10rem;
-  background: rgb(255 120 40 / 0.28);
+  background: color-mix(in srgb, var(--color-ember) 28%, transparent);
   animation: footer-float 12s ease-in-out infinite;
 }
 .join-panel__blob--b {
   width: 20rem; height: 20rem; left: 30%; bottom: -12rem;
-  background: rgb(255 90 31 / 0.16);
+  background: color-mix(in srgb, var(--color-blaze) 16%, transparent);
   animation: footer-float 16s ease-in-out infinite reverse;
 }
 .join-panel__emblem {
@@ -402,11 +402,11 @@ function toTop() {
   50% { transform: translate(-2.5rem, 1.5rem); }
 }
 .join-btn {
-  @apply inline-flex h-16 items-center justify-between gap-4 rounded-full pr-2 pl-7 text-base font-semibold transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5;
+  @apply inline-flex h-16 items-center justify-between gap-4 rounded-full pr-2 pl-7 text-base font-semibold transition-[background-position,background-color,border-color,color,transform] duration-500 hover:-translate-y-0.5;
 }
 .join-btn--primary {
-  @apply bg-ember text-ink hover:bg-ember-hi;
-  box-shadow: 0 14px 36px -14px rgb(255 148 71 / 0.7);
+  @apply text-ink;
+  box-shadow: 0 14px 36px -14px color-mix(in srgb, var(--color-ember) 70%, transparent);
 }
 .join-btn--ghost {
   @apply border border-line bg-ink/60 text-bone backdrop-blur hover:border-ember/60;
@@ -483,14 +483,14 @@ function toTop() {
   transition: -webkit-mask-position var(--wipe) var(--ease), mask-position var(--wipe) var(--ease);
 }
 .wordmark__lit {
-  background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, #ff5a1f 100%);
+  background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, var(--color-blaze) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .wordmark__glow {
-  color: rgb(255 148 71 / 0.35);
-  text-shadow: 0 0 16px rgb(255 148 71 / 0.75), 0 0 36px rgb(255 120 40 / 0.35);
+  color: color-mix(in srgb, var(--color-ember) 35%, transparent);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-ember) 75%, transparent), 0 0 36px color-mix(in srgb, var(--color-ember) 35%, transparent);
 }
 .wordmark:hover {
   transform: scale(1.015);

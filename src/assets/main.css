@@ -4,25 +4,27 @@
 
 /* ---------------------------------------------------------------------------
    Black Wolf design tokens
-   One accent (ember), two blacks, one light surface reserved for the
+   Taken from the wolf emblem: true logo orange on neutral blacks, with
+   white / fur-grey neutrals. One light surface is reserved for the
    Special Kids Training page and form surfaces.
    ------------------------------------------------------------------------ */
 @theme {
-  --color-ink: #0b0b0d;
-  --color-coal: #151519;
-  --color-iron: #1d1d23;
-  --color-line: #2c2c34;
-  --color-ember: #ff9447;
-  --color-ember-hi: #ffad73;
-  --color-ember-lo: #e97a2c;
+  --color-ink: #090909;
+  --color-coal: #111111;
+  --color-iron: #1a1a1a;
+  --color-line: #2b2b2b;
+  --color-ember: #f7860f; /* logo orange */
+  --color-ember-hi: #ffa53a;
+  --color-ember-lo: #d96a00;
+  --color-blaze: #ff5e0e; /* hot end of the molten gradient */
   --color-bone: #ffffff;
-  --color-ash: #b8b8c0;
-  --color-smoke: #8c8c96;
-  --color-chalk: #f2f0eb;
-  --color-chalk-2: #e5e2da;
-  --color-graphite: #1b1b20;
-  --color-slate: #4a4a54;
-  --color-rust: #a34b10;
+  --color-ash: #c4c4c4;
+  --color-smoke: #8f8f8f;
+  --color-chalk: #f5f3ef;
+  --color-chalk-2: #e8e5df;
+  --color-graphite: #161616;
+  --color-slate: #4d4d4d;
+  --color-rust: #a64d0a;
   --color-danger: #ff6b6b;
   --color-success: #5ad19a;
 
@@ -171,16 +173,17 @@
    buttons keep 4.5:1 contrast on the chalk background.
    ------------------------------------------------------------------------ */
 .tone-light {
-  --color-ink: #f2f0eb;
-  --color-coal: #e9e6df;
-  --color-iron: #dedad1;
-  --color-line: #d0cbc1;
-  --color-bone: #1b1b20;
-  --color-ash: #4a4a54;
-  --color-smoke: #66666f;
-  --color-ember: #a34b10;
-  --color-ember-hi: #8a3e0b;
-  --color-ember-lo: #73330a;
+  --color-ink: #f5f3ef;
+  --color-coal: #ebe8e2;
+  --color-iron: #e0dcd4;
+  --color-line: #d2cdc3;
+  --color-bone: #161616;
+  --color-ash: #474747;
+  --color-smoke: #636363;
+  --color-ember: #a64d0a;
+  --color-ember-hi: #8f4209;
+  --color-ember-lo: #8a3e08;
+  --color-blaze: #7a3507;
   background-color: var(--color-ink);
   color: var(--color-bone);
 }
@@ -210,14 +213,14 @@
     -webkit-text-stroke: 1.5px var(--color-ember);
   }
   .text-gradient-ember {
-    background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, #ff5a1f 100%);
+    background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, var(--color-blaze) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   /* Soft ember light used behind heroes and bands. */
   .glow-ember {
-    background: radial-gradient(closest-side, rgb(255 120 40 / 0.35), rgb(255 120 40 / 0) 100%);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-ember) 38%, transparent), transparent 100%);
   }
   /* Eyebrow label: small caps with a short ember rule before it. */
   .eyebrow {
@@ -246,6 +249,32 @@
     transform: scale(1.07);
   }
 }
+
+/* Molten fill for primary actions: logo orange flowing into a hotter blaze on hover. */
+.btn-molten {
+  background-color: var(--color-ember);
+  background-image: linear-gradient(115deg, var(--color-ember-hi) 0%, var(--color-ember) 38%, var(--color-ember) 55%, var(--color-blaze) 100%);
+  background-size: 200% 100%;
+  background-position: 0% 0;
+  transition: background-position 0.6s var(--ease-out-strong), transform 0.2s ease, color 0.2s ease;
+}
+.btn-molten:hover {
+  background-position: 100% 0;
+}
+
+/* Brand scrollbar: dark rail, ember thumb. */
+html {
+  scrollbar-color: color-mix(in srgb, var(--color-ember) 70%, var(--color-iron)) var(--color-ink);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-ember-hi), var(--color-ember-lo));
+  border: 3px solid var(--color-ink);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ember); }
 
 /* Primary button: a light sheen sweeps across on hover. */
 .btn-sheen {

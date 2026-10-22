@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
     <ClawMarks
       animate
       :delay="0.75"
-      class="pointer-events-none absolute -right-16 top-[8%] -z-10 hidden h-[62%] text-ember/85 drop-shadow-[0_0_30px_rgb(255_148_71/0.45)] md:block lg:right-[4%]"
+      class="pointer-events-none absolute -right-16 top-[8%] -z-10 hidden h-[62%] text-ember/85 drop-shadow-[0_0_30px_rgb(247_134_15/0.45)] md:block lg:right-[4%]"
     />
 
     <!-- Vertical side label + scroll cue -->

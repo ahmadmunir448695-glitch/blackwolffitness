@@ -28,7 +28,7 @@ const classes = computed(() => [
     lg: 'h-14 px-8 text-base',
   }[props.size],
   {
-    primary: 'btn-sheen cut-corner bg-ember text-ink hover:bg-ember-hi active:bg-ember-lo',
+    primary: 'btn-sheen btn-molten cut-corner text-ink',
     outline: 'border border-bone/35 bg-ink/20 text-bone backdrop-blur-sm hover:border-ember hover:bg-ember/10 hover:text-ember',
     dark: 'btn-sheen cut-corner bg-ink text-bone hover:bg-graphite',
     ghost: 'px-0 h-auto text-ember underline decoration-1 underline-offset-[6px] hover:text-ember-hi',
