@@ -8,6 +8,7 @@ import WhatsAppLink from './WhatsAppLink.vue'
 import { club, socialLabels } from '@/config/club.js'
 import { programLinks } from '@/config/navigation.js'
 import { telHref } from '@/utils/format.js'
+import { whatsappUrl } from '@/utils/whatsapp.js'
 
 const year = new Date().getFullYear()
 
@@ -23,13 +24,21 @@ const socials = computed(() =>
     .map(([key, url]) => ({ key, url, label: socialLabels[key] ?? key, handle: handleFrom(url) })),
 )
 
-/** Big contact cards: only the channels the club has filled in. */
-const contactCards = computed(() => [
-  club.contact.phone && { key: 'phone', icon: 'phone', label: 'Call us', value: club.contact.phone, href: telHref(club.contact.phone) },
-  club.contact.phoneAlt && { key: 'phone-alt', icon: 'phone', label: 'Call us', value: club.contact.phoneAlt, href: telHref(club.contact.phoneAlt) },
-  club.contact.email && { key: 'mail', icon: 'mail', label: 'Email us', value: club.contact.email, href: `mailto:${club.contact.email}` },
-  ...socials.value.map((s) => ({ key: s.key, icon: s.key, label: s.label, value: s.handle, href: s.url, external: true })),
-].filter(Boolean))
+/** Phone rows: the main line also opens WhatsApp. */
+const phones = computed(() =>
+  [
+    club.contact.phone && { key: 'main', value: club.contact.phone, tel: telHref(club.contact.phone), whatsapp: whatsappUrl() },
+    club.contact.phoneAlt && { key: 'alt', value: club.contact.phoneAlt, tel: telHref(club.contact.phoneAlt), whatsapp: null },
+  ].filter(Boolean),
+)
+
+/** One handle when every network uses the same name, e.g. "@blackwolffitness". */
+const socialHandle = computed(() => {
+  const handles = [...new Set(socials.value.map((s) => s.handle))]
+  return handles.length === 1 ? handles[0] : ''
+})
+
+const hasContact = computed(() => phones.value.length || club.contact.email || socials.value.length)
 
 const address = computed(() => [...club.location.addressLines, club.location.city].filter(Boolean))
 
@@ -77,35 +86,78 @@ function toTop() {
         </div>
       </div>
 
-      <!-- Contact cards -->
-      <ul
-        v-if="contactCards.length"
-        class="mt-12 grid gap-3 sm:grid-cols-2"
-        :class="contactCards.length === 5 ? 'lg:grid-cols-3 xl:grid-cols-5' : 'lg:grid-cols-4'"
-        aria-label="Contact the club"
-      >
-        <li v-for="card in contactCards" :key="card.key">
+      <!-- Contact panel -->
+      <section v-if="hasContact" aria-labelledby="footer-contact" class="mt-12">
+        <h2 id="footer-contact" class="sr-only">Contact the club</h2>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+          <!-- Phones -->
+          <div v-if="phones.length" class="contact-card md:col-span-2 lg:col-span-5">
+            <div class="flex items-center gap-3">
+              <span class="contact-icon"><AppIcon name="phone" class="h-5 w-5" /></span>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Call or WhatsApp</p>
+            </div>
+            <ul class="mt-5 divide-y divide-line/70">
+              <li v-for="row in phones" :key="row.key" class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 py-3 first:pt-0 last:pb-0">
+                <a :href="row.tel" class="font-display text-3xl font-bold tracking-wide text-bone transition-colors duration-300 hover:text-ember sm:text-4xl">
+                  {{ row.value }}
+                </a>
+                <span class="flex gap-2">
+                  <a :href="row.tel" class="contact-pill" :aria-label="`Call ${row.value}`">
+                    <AppIcon name="phone" class="h-4 w-4" />Call
+                  </a>
+                  <a
+                    v-if="row.whatsapp"
+                    :href="row.whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-pill contact-pill--wa"
+                    :aria-label="`WhatsApp ${row.value} (opens in a new tab)`"
+                  >
+                    <AppIcon name="whatsapp" class="h-4 w-4" />WhatsApp
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Email -->
           <a
-            :href="card.href"
-            :target="card.external ? '_blank' : undefined"
-            :rel="card.external ? 'noopener noreferrer' : undefined"
-            class="group flex h-full items-center gap-4 border border-line bg-ink/50 p-4 transition-[border-color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-ember/60 hover:bg-ink"
+            v-if="club.contact.email"
+            :href="`mailto:${club.contact.email}`"
+            class="contact-card group flex flex-col lg:col-span-4"
           >
-            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ember/40 text-ember transition-colors duration-300 group-hover:bg-ember group-hover:text-ink">
-              <AppIcon :name="card.icon" class="h-5 w-5" />
+            <div class="flex items-center gap-3">
+              <span class="contact-icon"><AppIcon name="mail" class="h-5 w-5" /></span>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Email</p>
+            </div>
+            <p class="mt-5 text-lg font-semibold text-bone transition-colors duration-300 group-hover:text-ember sm:text-xl">
+              {{ club.contact.email.split('@')[0] }}<wbr />@{{ club.contact.email.split('@')[1] }}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-ash transition-colors duration-300 group-hover:text-ember">
+              Write to us
+              <AppIcon name="arrowRight" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </span>
-            <span class="min-w-0">
-              <span class="block text-xs font-semibold uppercase tracking-[0.16em] text-smoke">{{ card.label }}</span>
-              <span class="mt-0.5 block font-semibold text-bone transition-colors [overflow-wrap:anywhere] group-hover:text-ember">
-                <template v-if="card.key === 'mail' && card.value.includes('@')">{{ card.value.split('@')[0] }}<wbr />@{{ card.value.split('@')[1] }}</template>
-                <template v-else>{{ card.value }}</template>
-              </span>
-            </span>
-            <AppIcon name="arrowRight" class="ml-auto h-4 w-4 shrink-0 -rotate-45 text-smoke transition-all duration-300 group-hover:rotate-0 group-hover:text-ember" />
-            <span v-if="card.external" class="sr-only">(opens in a new tab)</span>
           </a>
-        </li>
-      </ul>
+
+          <!-- Socials -->
+          <div v-if="socials.length" class="contact-card flex flex-col lg:col-span-3">
+            <div class="flex items-center gap-3">
+              <span class="contact-icon"><AppIcon name="heart" class="h-5 w-5" /></span>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Follow the pack</p>
+            </div>
+            <p v-if="socialHandle" class="mt-5 text-lg font-semibold text-bone sm:text-xl">{{ socialHandle }}</p>
+            <ul class="mt-auto flex flex-wrap gap-2 pt-5">
+              <li v-for="s in socials" :key="s.key">
+                <a :href="s.url" target="_blank" rel="noopener noreferrer" class="contact-pill">
+                  <AppIcon :name="s.key" class="h-4 w-4" />{{ s.label }}
+                  <span v-if="!socialHandle" class="text-smoke">{{ s.handle }}</span>
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <!-- Link columns -->
       <div class="mt-14 grid gap-10 border-t border-line pt-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1.2fr]">
@@ -194,3 +246,30 @@ function toTop() {
     </div>
   </footer>
 </template>
+
+<style scoped>
+@reference "../../assets/main.css";
+
+.contact-card {
+  @apply relative overflow-hidden rounded-2xl border border-line p-6 transition-[border-color,transform,box-shadow] duration-500 ease-out;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgb(255 148 71 / 0.07), transparent 55%),
+    linear-gradient(160deg, var(--color-iron), rgb(11 11 13 / 0.6));
+}
+.contact-card:hover {
+  @apply -translate-y-1 border-ember/50;
+  box-shadow: 0 18px 40px -24px rgb(255 148 71 / 0.45);
+}
+.contact-icon {
+  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ember/10 text-ember ring-1 ring-ember/25;
+}
+.contact-pill {
+  @apply inline-flex h-10 items-center gap-2 rounded-full border border-line bg-ink/60 px-4 text-sm font-semibold text-ash transition-colors duration-300 hover:border-ember hover:bg-ember hover:text-ink;
+}
+.contact-pill--wa {
+  @apply border-ember/40 text-ember;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-card, .contact-card:hover { transform: none; }
+}
+</style>
