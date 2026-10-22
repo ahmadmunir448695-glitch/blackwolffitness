@@ -83,7 +83,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
                 </li>
               </ul>
 
-              <h4 class="mt-6 text-sm font-semibold text-bone">Includes</h4>
+              <h4 class="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ash">Includes</h4>
               <ul class="mt-2 space-y-2 text-[0.95rem]">
                 <li v-for="item in plan.inclusions" :key="item" class="flex gap-2.5">
                   <AppIcon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-ember" />
@@ -91,7 +91,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
                 </li>
               </ul>
 
-              <h4 class="mt-6 text-sm font-semibold text-bone">Programs</h4>
+              <h4 class="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ash">Programs</h4>
               <p class="mt-2 text-sm text-ash">{{ plan.programs.map(programName).join(', ') }}</p>
 
               <div class="mt-auto pt-8">
@@ -111,7 +111,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
           <p class="mt-4 max-w-md text-lg text-ash">Every plan is built from these programs. Read about each one before you choose.</p>
         </div>
         <ul class="grid gap-px bg-line sm:grid-cols-2">
-          <li v-for="program in programList" :key="program.slug" class="bg-coal">
+          <li v-for="program in programList" :key="program.slug" class="bg-coal sm:[&:last-child:nth-child(odd)]:col-span-2">
             <RouterLink :to="`/services/${program.slug}`" class="group flex h-full items-start justify-between gap-4 p-5 transition-colors hover:bg-iron">
               <span>
                 <span class="block font-display text-2xl font-bold uppercase leading-none" :class="program.featured ? 'text-ember' : 'text-bone'">{{ program.shortName ?? program.name }}</span>

@@ -2,11 +2,12 @@
 import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import AppIcon from '../ui/AppIcon.vue'
-import BaseButton from '../ui/BaseButton.vue'
-import WhatsAppLink from './WhatsAppLink.vue'
 import { joinLink, mainNav } from '@/config/navigation.js'
 import { club } from '@/config/club.js'
 import { telHref } from '@/utils/format.js'
+import { whatsappUrl } from '@/utils/whatsapp.js'
+
+const chatUrl = whatsappUrl()
 
 const props = defineProps({ open: { type: Boolean, default: false } })
 const emit = defineEmits(['close'])
@@ -77,7 +78,7 @@ onBeforeUnmount(() => {
       v-if="open"
       id="mobile-nav"
       ref="panel"
-      class="fixed inset-x-0 bottom-0 top-[4.5rem] z-40 overflow-y-auto overscroll-contain bg-ink xl:hidden"
+      class="fixed inset-x-0 bottom-0 top-0 z-30 overflow-y-auto overscroll-contain bg-ink/95 pt-24 backdrop-blur-xl xl:hidden"
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
@@ -127,8 +128,18 @@ onBeforeUnmount(() => {
         </ul>
 
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          <BaseButton :to="joinLink.to" size="lg" block>{{ joinLink.label }}</BaseButton>
-          <WhatsAppLink variant="block" label="Chat on WhatsApp" />
+          <RouterLink :to="joinLink.to" class="btn-molten btn-sheen flex h-14 items-center justify-center gap-2 rounded-full font-semibold text-ink">
+            {{ joinLink.label }} <AppIcon name="arrowRight" class="h-4 w-4" />
+          </RouterLink>
+          <a
+            v-if="chatUrl"
+            :href="chatUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-14 items-center justify-center gap-2 rounded-full border border-white/15 font-semibold text-bone transition-colors hover:border-ember hover:text-ember"
+          >
+            <AppIcon name="whatsapp" class="h-5 w-5" /> Chat on WhatsApp<span class="sr-only"> (opens WhatsApp)</span>
+          </a>
         </div>
         <a
           v-if="club.contact.phone"

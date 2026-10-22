@@ -64,7 +64,7 @@ function medalTone(text) {
             </h3>
             <dl v-if="featured.facts.length" class="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line">
               <div v-for="fact in featured.facts.slice(0, 4)" :key="fact.label" class="bg-ink/70 p-3">
-                <dt class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-smoke">{{ fact.label }}</dt>
+                <dt class="text-xs font-semibold uppercase tracking-[0.14em] text-ash">{{ fact.label }}</dt>
                 <dd class="mt-1 font-display text-lg font-bold uppercase leading-tight text-bone">{{ fact.value }}</dd>
               </div>
             </dl>

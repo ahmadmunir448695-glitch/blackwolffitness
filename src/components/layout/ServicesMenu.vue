@@ -125,7 +125,7 @@ onBeforeUnmount(() => {
     <button
       ref="button"
       type="button"
-      class="relative inline-flex h-[4.5rem] items-center gap-1 px-3 text-[0.94rem] font-medium transition-colors hover:text-bone"
+      class="relative inline-flex h-10 items-center gap-1 rounded-full px-4 text-[0.92rem] font-medium tracking-[0.01em] transition-colors hover:text-bone"
       :class="isActive || open ? 'text-bone' : 'text-ash'"
       :aria-expanded="open ? 'true' : 'false'"
       :aria-controls="panelId"
@@ -134,47 +134,51 @@ onBeforeUnmount(() => {
     >
       Services
       <AppIcon name="chevronDown" class="h-4 w-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" />
-      <span v-if="isActive" class="absolute inset-x-3 bottom-0 h-0.5 bg-ember" aria-hidden="true" />
+      <span
+        class="absolute bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-ember transition-all duration-300"
+        :class="isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0'"
+        aria-hidden="true"
+      />
     </button>
 
     <Transition
       enter-active-class="transition duration-150 ease-out"
-      enter-from-class="opacity-0 -translate-y-1"
+      enter-from-class="opacity-0 translate-y-2"
       leave-active-class="transition duration-100 ease-in"
-      leave-to-class="opacity-0 -translate-y-1"
+      leave-to-class="opacity-0 translate-y-2"
     >
       <div
         v-show="open"
         :id="panelId"
-        class="absolute left-1/2 top-full z-50 w-[46rem] -translate-x-1/2 border border-line bg-coal shadow-[0_24px_60px_-20px_rgb(0_0_0/0.8)]"
+        class="absolute left-1/2 top-full z-50 w-[46rem] -translate-x-1/2 pt-4"
         @keydown="onPanelKeydown"
       >
-        <div class="grid grid-cols-[1fr_15rem]">
-          <ul class="grid grid-cols-2 gap-px bg-line p-px">
-            <li v-for="item in regular" :key="item.to" class="bg-coal">
+        <div class="grid grid-cols-[1fr_15rem] overflow-hidden rounded-3xl border border-white/10 bg-coal shadow-[0_30px_80px_-24px_rgb(0_0_0/0.9)]">
+          <ul class="grid grid-cols-2 gap-1 p-2">
+            <li v-for="item in regular" :key="item.to">
               <RouterLink
                 :to="item.to"
                 data-menu-link
-                class="group block h-full p-4 transition-colors hover:bg-iron focus-visible:bg-iron"
-                active-class="bg-iron"
+                class="group block h-full rounded-2xl p-4 transition-colors hover:bg-white/[0.05] focus-visible:bg-white/[0.05]"
+                active-class="bg-white/[0.05]"
               >
                 <span class="block font-display text-xl font-bold uppercase leading-none text-bone group-hover:text-ember">
                   {{ item.shortLabel }}
                 </span>
-                <span class="mt-1.5 block text-[0.82rem] leading-snug text-ash">{{ item.description }}</span>
+                <span class="mt-1.5 block text-[0.85rem] leading-snug text-ash">{{ item.description }}</span>
               </RouterLink>
             </li>
           </ul>
 
-          <div class="flex flex-col justify-between gap-4 bg-ink p-5">
+          <div class="flex flex-col justify-between gap-4 border-l border-white/[0.06] bg-ink p-5">
             <RouterLink
               v-if="featured"
               :to="featured.to"
               data-menu-link
-              class="group block border border-ember/40 p-4 transition-colors hover:border-ember"
+              class="group block rounded-2xl border border-ember/40 bg-ember/[0.06] p-4 transition-colors hover:border-ember"
             >
               <span class="font-display text-xl font-bold uppercase leading-none text-ember">{{ featured.label }}</span>
-              <span class="mt-2 block text-[0.82rem] leading-snug text-ash">{{ featured.description }}</span>
+              <span class="mt-2 block text-[0.85rem] leading-snug text-ash">{{ featured.description }}</span>
               <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-bone">
                 For parents <AppIcon name="arrowRight" class="h-4 w-4" />
               </span>

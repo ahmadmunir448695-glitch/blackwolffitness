@@ -44,8 +44,8 @@ function onKey(e) {
     <li v-for="(item, i) in items" :key="item.image.src" :class="spans[item.size] ?? spans.square">
       <figure class="zoom-hover group relative h-full w-full overflow-hidden">
         <SmartImage :image="item.image" sizes="(min-width: 1024px) 25vw, 50vw" :widths="[400, 640, 960, 1280]" class="h-full w-full" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-        <figcaption class="absolute bottom-0 left-0 flex items-center gap-2 p-4 font-display text-xl font-bold uppercase tracking-wide text-bone">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 via-35% to-transparent to-60% transition-opacity duration-500 group-hover:from-ink/95" aria-hidden="true" />
+        <figcaption class="absolute bottom-0 left-0 flex items-center gap-2 p-4 font-display text-xl font-bold uppercase tracking-wide text-bone [text-shadow:0_1px_12px_rgb(0_0_0/0.6)]">
           <span class="h-[2px] w-5 bg-ember transition-all duration-500 group-hover:w-10" aria-hidden="true" />
           {{ item.caption }}
         </figcaption>

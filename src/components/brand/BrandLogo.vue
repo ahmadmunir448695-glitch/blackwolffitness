@@ -24,7 +24,7 @@ defineProps({
       >Black Wolf</span>
       <span
         class="font-sans font-medium text-ash"
-        :class="size === 'lg' ? 'mt-1.5 text-sm tracking-[0.32em]' : 'mt-0.5 text-[0.62rem] tracking-[0.3em]'"
+        :class="size === 'lg' ? 'mt-1.5 text-sm tracking-[0.32em]' : 'mt-1 text-[0.68rem] tracking-[0.28em]'"
       >FITNESS CLUB</span>
     </span>
   </span>
