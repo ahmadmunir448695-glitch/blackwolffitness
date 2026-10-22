@@ -227,10 +227,12 @@ function toTop() {
     </div>
 
     <!-- Giant wordmark -->
-    <div class="pointer-events-none mt-12 select-none overflow-hidden" aria-hidden="true">
-      <p v-reveal="'up'" class="text-outline whitespace-nowrap text-center font-display text-[17.5vw] font-black uppercase leading-[0.78] text-bone/15">
-        Black Wolf
-      </p>
+    <div class="mt-6 select-none overflow-hidden pt-10 pb-6" aria-hidden="true">
+      <div v-reveal="'up'" class="wordmark group">
+        <span class="wordmark__base">Black Wolf</span>
+        <span class="wordmark__glow">Black Wolf</span>
+        <span class="wordmark__lit">Black Wolf</span>
+      </div>
     </div>
 
     <!-- Bottom bar -->
@@ -275,7 +277,45 @@ function toTop() {
 .contact-pill--wa {
   @apply border-ember/40 text-ember;
 }
+
+/* Giant footer wordmark: faint outline that lights up in ember on hover. */
+.wordmark {
+  @apply relative grid cursor-default whitespace-nowrap text-center font-display text-[17.5vw] font-black uppercase leading-[0.92];
+}
+.wordmark > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), -webkit-text-stroke-color 0.6s ease;
+}
+.wordmark__base {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.28);
+}
+.wordmark__lit {
+  background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, #ff5a1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transform: translateY(6%);
+}
+.wordmark__glow {
+  color: rgb(255 148 71 / 0.35);
+  text-shadow: 0 0 16px rgb(255 148 71 / 0.75), 0 0 36px rgb(255 120 40 / 0.35);
+  opacity: 0;
+  transform: translateY(6%);
+}
+.wordmark:hover .wordmark__base {
+  -webkit-text-stroke-color: var(--color-ember);
+  opacity: 0.4;
+}
+.wordmark:hover .wordmark__glow,
+.wordmark:hover .wordmark__lit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .contact-card, .contact-card:hover { transform: none; }
+  .wordmark > span { transition: opacity 0.2s linear; transform: none !important; }
 }
 </style>
