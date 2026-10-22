@@ -46,7 +46,7 @@ watch(isNotFound, (value) => value && applyPageMeta({ title: 'Coach not found', 
 <template>
   <NotFoundView v-if="isNotFound" />
 
-  <div v-else class="site-container py-12 lg:py-16">
+  <div v-else class="site-container pb-12 pt-[calc(var(--header-h)+3rem)] lg:pb-16 lg:pt-[calc(var(--header-h)+4rem)]">
     <nav aria-label="Breadcrumb" class="text-sm text-ash">
       <RouterLink to="/coaches" class="inline-flex items-center gap-1.5 hover:text-ember">
         <AppIcon name="arrowLeft" class="h-4 w-4" /> All coaches

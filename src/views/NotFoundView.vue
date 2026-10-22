@@ -6,7 +6,7 @@ import { programLinks } from '@/config/navigation.js'
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden" aria-labelledby="nf-title">
+  <section class="relative isolate overflow-hidden pt-[var(--header-h)]" aria-labelledby="nf-title">
     <ClawMarks class="pointer-events-none absolute -right-16 top-6 -z-10 h-[85%] text-iron sm:right-10" />
     <div class="site-container py-20 lg:py-32">
       <p class="font-display text-[clamp(6rem,22vw,16rem)] font-black leading-[0.8] text-ember">404</p>

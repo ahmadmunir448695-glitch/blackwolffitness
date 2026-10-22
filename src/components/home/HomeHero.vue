@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden" aria-labelledby="hero-title">
+  <section class="relative isolate overflow-hidden pt-[var(--header-h)]" aria-labelledby="hero-title">
     <!-- Slides -->
     <div class="absolute inset-0 -z-20" aria-hidden="true">
       <div
@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
       </span>
     </div>
 
-    <div class="site-container flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-10 pt-16 lg:pb-12">
+    <div class="site-container flex min-h-[calc(100svh-var(--header-h))] flex-col justify-end pb-10 pt-16 lg:pb-12">
       <p class="eyebrow anim-fade mb-5" style="animation-delay: 0.05s">Black Wolf Fitness Club</p>
 
       <h1 id="hero-title" class="font-display text-[clamp(3.4rem,9.6vw,8.75rem)] leading-[0.86] font-black uppercase text-bone text-shadow-hero">

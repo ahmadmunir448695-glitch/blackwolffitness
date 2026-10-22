@@ -44,7 +44,7 @@ const reassurance = ['Parent consultation first', 'Individualized Support', 'Sup
 
 <template>
   <!-- FULL ---------------------------------------------------------------->
-  <section v-if="variant === 'full'" class="relative isolate overflow-hidden" aria-labelledby="service-title">
+  <section v-if="variant === 'full'" class="relative isolate overflow-hidden pt-[var(--header-h)]" aria-labelledby="service-title">
     <SmartImage :image="hero.image" priority img-class="anim-kenburns" sizes="100vw" :widths="[640, 960, 1280, 1600, 2200]" class="absolute inset-0 -z-20 h-full w-full" />
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/75 to-ink/30" aria-hidden="true" />
     <div class="glow-ember anim-glow pointer-events-none absolute -bottom-48 -left-40 -z-10 h-[34rem] w-[34rem]" aria-hidden="true" />
@@ -72,7 +72,7 @@ const reassurance = ['Parent consultation first', 'Individualized Support', 'Sup
   </section>
 
   <!-- LIGHT (Special Kids) ------------------------------------------------>
-  <section v-else-if="variant === 'light'" class="overflow-hidden" aria-labelledby="service-title">
+  <section v-else-if="variant === 'light'" class="overflow-hidden pt-[var(--header-h)]" aria-labelledby="service-title">
     <div class="site-container grid gap-10 py-12 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16 lg:py-20">
       <div>
         <nav aria-label="Breadcrumb" class="mb-6 text-sm text-ash">
@@ -100,7 +100,7 @@ const reassurance = ['Parent consultation first', 'Individualized Support', 'Sup
   </section>
 
   <!-- SPLIT / SPLIT-REVERSE ---------------------------------------------->
-  <section v-else class="relative overflow-hidden border-b border-line" aria-labelledby="service-title">
+  <section v-else class="relative overflow-hidden border-b border-line pt-[var(--header-h)]" aria-labelledby="service-title">
     <div class="grid lg:min-h-[78svh] lg:grid-cols-2">
       <div
         class="relative h-[52svh] lg:h-auto"

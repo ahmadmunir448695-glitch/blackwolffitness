@@ -81,12 +81,12 @@ watch(isNotFound, (value) => {
 <template>
   <NotFoundView v-if="isNotFound" />
 
-  <div v-else-if="error" class="site-container py-20 lg:py-28">
+  <div v-else-if="error" class="site-container pb-20 pt-[calc(var(--header-h)+5rem)] lg:pb-28 lg:pt-[calc(var(--header-h)+7rem)]">
     <AsyncState :error="error" error-title="This program could not load" @retry="reload" />
   </div>
 
   <div v-else :class="isLight ? 'tone-light' : ''">
-    <div v-if="loading" class="site-container py-16" aria-busy="true">
+    <div v-if="loading" class="site-container pb-16 pt-[calc(var(--header-h)+4rem)]" aria-busy="true">
       <span class="sr-only">Loading program…</span>
       <div class="skeleton h-6 w-40" aria-hidden="true" />
       <div class="skeleton mt-6 h-24 w-3/4 max-w-2xl" aria-hidden="true" />

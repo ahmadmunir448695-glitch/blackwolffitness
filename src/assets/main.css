@@ -46,7 +46,13 @@
 }
 
 @layer base {
+  :root {
+    /* Space the floating header covers at the top of every page. */
+    --header-h: 4.75rem;
+  }
+
   html {
+    background-color: var(--color-ink);
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 6rem;

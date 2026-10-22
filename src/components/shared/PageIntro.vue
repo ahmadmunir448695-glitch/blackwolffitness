@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden border-b border-line" aria-labelledby="page-title">
+  <section class="relative isolate overflow-hidden border-b border-line pt-[var(--header-h)]" aria-labelledby="page-title">
     <!-- Atmosphere: the same photo, blurred and dimmed, fills the whole band -->
     <div v-if="image" class="absolute inset-0 -z-20" aria-hidden="true">
       <SmartImage :image="image" alt="" sizes="60vw" :widths="[480, 768]" class="h-full w-full" img-class="scale-110 blur-2xl" />
