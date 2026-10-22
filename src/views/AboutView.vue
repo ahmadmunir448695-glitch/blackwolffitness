@@ -30,11 +30,11 @@ const isDev = import.meta.env.DEV
     <section v-reveal-auto class="border-y border-line bg-coal py-16 lg:py-24" aria-label="Mission and vision">
       <div class="site-container grid lg:grid-cols-2">
         <div class="py-8 lg:py-4 lg:pr-12">
-          <h2 class="text-sm font-semibold text-ember">Our mission</h2>
+          <h2 class="eyebrow">Our mission</h2>
           <p class="mt-4 font-display text-heading font-bold uppercase leading-tight text-bone">{{ about.mission }}</p>
         </div>
         <div class="border-t border-line py-8 lg:border-l lg:border-t-0 lg:py-4 lg:pl-12">
-          <h2 class="text-sm font-semibold text-ember">Our vision</h2>
+          <h2 class="eyebrow">Our vision</h2>
           <p class="mt-4 font-display text-heading font-bold uppercase leading-tight text-bone">{{ about.vision }}</p>
         </div>
       </div>

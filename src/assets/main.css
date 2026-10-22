@@ -18,13 +18,13 @@
   --color-ember-lo: #d96a00;
   --color-blaze: #ff5e0e; /* hot end of the molten gradient */
   --color-bone: #ffffff;
-  --color-ash: #c4c4c4;
-  --color-smoke: #8f8f8f;
+  --color-ash: #d0d0d0;
+  --color-smoke: #a1a1a1;
   --color-chalk: #f5f3ef;
   --color-chalk-2: #e8e5df;
-  --color-graphite: #161616;
-  --color-slate: #4d4d4d;
-  --color-rust: #a64d0a;
+  --color-graphite: #121212;
+  --color-slate: #3d3d3d;
+  --color-rust: #8a3e08;
   --color-danger: #ff6b6b;
   --color-success: #5ad19a;
 
@@ -183,9 +183,9 @@
   --color-coal: #ebe8e2;
   --color-iron: #e0dcd4;
   --color-line: #d2cdc3;
-  --color-bone: #161616;
-  --color-ash: #474747;
-  --color-smoke: #636363;
+  --color-bone: #121212;
+  --color-ash: #363636;
+  --color-smoke: #4f4f4f;
   --color-ember: #a64d0a;
   --color-ember-hi: #8f4209;
   --color-ember-lo: #8a3e08;

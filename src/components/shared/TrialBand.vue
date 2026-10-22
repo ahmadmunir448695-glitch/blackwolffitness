@@ -35,7 +35,7 @@ defineProps({
       <div class="max-w-2xl">
         <p v-reveal class="eyebrow text-ink!">Book a trial session</p>
         <h2 v-reveal="{ delay: 80 }" class="mt-5 font-display text-display font-black uppercase">{{ heading }}</h2>
-        <p v-reveal="{ delay: 160 }" class="mt-5 max-w-xl text-lg leading-relaxed text-ink/80">{{ text }}</p>
+        <p v-reveal="{ delay: 160 }" class="mt-5 max-w-xl text-lg font-medium leading-relaxed text-ink/90">{{ text }}</p>
         <div v-reveal="{ delay: 240 }" class="mt-8 flex flex-wrap gap-3">
           <BaseButton :to="primaryTo" variant="dark" size="lg" icon-right="arrowRight">{{ primaryLabel }}</BaseButton>
           <WhatsAppLink variant="accent" :message="whatsappMessage" />

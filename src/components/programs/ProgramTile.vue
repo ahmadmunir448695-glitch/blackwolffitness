@@ -25,7 +25,7 @@ const pad = (n) => String(n).padStart(2, '0')
     <SmartImage :image="program.image" :sizes="sizes" class="aspect-[4/3] sm:aspect-auto sm:h-full" />
     <div class="flex flex-col justify-between gap-6 p-6 sm:p-8">
       <div>
-        <p class="inline-flex items-center gap-2 rounded-full bg-ember/20 px-3 py-1 text-sm font-semibold text-rust">
+        <p class="inline-flex items-center gap-2 rounded-full bg-ember/15 px-3 py-1 text-sm font-semibold text-rust">
           <span class="h-1.5 w-1.5 rounded-full bg-rust" aria-hidden="true" /> For children and their parents
         </p>
         <component :is="headingLevel" class="mt-4 font-display text-4xl font-extrabold uppercase leading-[0.95] lg:text-5xl">

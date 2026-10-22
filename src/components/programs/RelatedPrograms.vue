@@ -14,7 +14,7 @@ const others = computed(() => programLinks.filter((link) => link.to !== `/servic
 <template>
   <nav class="border-t border-line py-12" aria-labelledby="related-title">
     <div class="site-container">
-      <h2 id="related-title" class="text-sm font-semibold text-ash">Other programs</h2>
+      <h2 id="related-title" class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-ash">Other programs</h2>
       <ul class="mt-4 flex flex-wrap gap-2">
         <li v-for="link in others" :key="link.to">
           <RouterLink

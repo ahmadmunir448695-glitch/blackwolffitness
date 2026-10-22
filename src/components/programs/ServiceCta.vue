@@ -27,11 +27,11 @@ const message = computed(() =>
     <div class="site-container">
       <div class="soft-round relative isolate overflow-hidden bg-ember p-8 text-ink sm:p-12 lg:p-16">
         <WolfMark class="absolute -bottom-16 -right-10 -z-10 h-72 text-ink/[0.08] lg:h-96" />
-        <p v-if="forParents" class="text-sm font-semibold text-ink/75">For parents and guardians</p>
+        <p v-if="forParents" class="text-sm font-semibold uppercase tracking-[0.16em] text-ink">For parents and guardians</p>
         <h2 id="service-cta-title" class="max-w-3xl font-display text-display font-black uppercase" :class="forParents ? 'mt-2' : ''">
           {{ cta.heading }}
         </h2>
-        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">{{ cta.text }}</p>
+        <p class="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-ink">{{ cta.text }}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <BaseButton :to="link" variant="dark" size="lg" icon-right="arrowRight">{{ cta.primaryLabel ?? 'Get in touch' }}</BaseButton>
           <WhatsAppLink variant="accent" :message="message" />
