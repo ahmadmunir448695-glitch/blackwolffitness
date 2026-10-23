@@ -85,7 +85,7 @@ export const club = {
     instagram: 'https://www.instagram.com/blackwolffitness/',
     facebook: '',
     youtube: '',
-    tiktok: 'https://www.tiktok.com/@blackwolffitness',
+    tiktok: 'https://www.tiktok.com/@blackwolffitnessclub',
   },
 }
 
