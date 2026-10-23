@@ -44,3 +44,15 @@ describe('membership pricing', () => {
     expect(home.period).toBeNull() // billing period not confirmed yet
   })
 })
+
+describe('registration fee', async () => {
+  const { registrationFee, hasRegistrationFee, programMemberships: plans, personalServices: services } = await import('../src/config/pricing.js')
+  it('is a one-time PKR 2,000 fee on every program membership', () => {
+    expect(registrationFee.amount).toBe(2000)
+    plans.forEach((p) => expect(hasRegistrationFee(p.slug)).toBe(true))
+  })
+  it('does not change monthly prices or apply to personal/home training', () => {
+    expect(plans.find((p) => p.slug === 'taekwondo').individual).toBe(6000)
+    services.forEach((s) => expect(hasRegistrationFee(s.id)).toBe(false))
+  })
+})

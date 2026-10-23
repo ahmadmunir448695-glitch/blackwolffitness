@@ -29,7 +29,7 @@ export const membershipPlans = []
 
 /** Membership FAQs. Answers avoid inventing terms — edit once policies are set. */
 export const membershipFaqs = [
-  { q: 'How much does membership cost?', a: 'Taekwondo is PKR 6,000, Boxing PKR 7,000, MMA PKR 10,000 and General Fitness PKR 8,000 per month for one person. When three people join together each pays the group rate shown on this page.' },
+  { q: 'How much does membership cost?', a: 'Taekwondo is PKR 6,000, Boxing PKR 7,000, MMA PKR 10,000 and General Fitness PKR 8,000 per month for one person. When three people join together each pays the group rate shown on this page. There is also a one-time registration fee of PKR 2,000 when you join, paid once and not every month.' },
   { q: 'How does the group rate work?', a: 'The group price is per person, per month, when three people enrol together. For example, three people in Taekwondo pay PKR 5,000 each, PKR 15,000 a month in total. The General Fitness rate is a family package for three members of the same family.' },
   { q: 'Can I try a class before joining?', a: 'Yes. Request a trial session using the form on this page and we will arrange a suitable class.' },
   { q: 'Can I train in more than one program?', a: 'Yes. Ask about multi-program options when you contact the club.' },

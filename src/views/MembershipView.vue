@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { membershipFaqs, programCatalog as programList } from '@/services/catalog.js'
 import { media } from '@/data/media.js'
-import { personalServices, programMemberships } from '@/config/pricing.js'
+import { currency, personalServices, programMemberships, registrationFee } from '@/config/pricing.js'
+import { formatPrice } from '@/utils/format.js'
 import PageIntro from '@/components/shared/PageIntro.vue'
 import ClubTimetable from '@/components/shared/ClubTimetable.vue'
 import InquiryForm from '@/components/forms/InquiryForm.vue'
@@ -39,9 +40,15 @@ const joinProgram = ref('')
             <h2 id="plans-title" class="mt-4 font-display text-title font-black uppercase">Martial Arts &amp; <span class="text-ember">Fitness</span></h2>
             <p class="mt-4 text-lg text-ash">One clear monthly fee per program. Join with two others and each of you pays the group rate.</p>
           </div>
-          <p class="inline-flex items-center gap-2.5 self-start rounded-full border border-ember/35 bg-ember/[0.06] px-4 py-2 text-sm text-bone lg:self-auto">
-            <AppIcon name="users" class="h-4 w-4 text-ember" /> Come as 3, save every month
-          </p>
+          <div class="flex flex-col gap-2 self-start sm:flex-row lg:shrink-0 lg:flex-col lg:items-end lg:self-auto">
+            <p class="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full border border-ember/35 bg-ember/[0.06] px-4 py-2 text-sm text-bone">
+              <AppIcon name="users" class="h-4 w-4 text-ember" /> Come as 3, save every month
+            </p>
+            <p class="inline-flex items-center gap-2.5 rounded-full border border-line bg-coal px-4 py-2 text-sm text-ash">
+              <AppIcon name="info" class="h-4 w-4 text-ember" />
+              <span>{{ registrationFee.label }}: <strong class="font-semibold text-bone">{{ formatPrice(registrationFee.amount, currency) }}</strong>, paid once</span>
+            </p>
+          </div>
         </div>
 
         <ul class="mt-10 grid gap-4 md:grid-cols-2">

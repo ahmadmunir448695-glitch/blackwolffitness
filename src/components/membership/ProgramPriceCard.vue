@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import AppIcon from '../ui/AppIcon.vue'
-import { currency, groupSaving, groupTotal } from '@/config/pricing.js'
+import { currency, groupSaving, groupTotal, hasRegistrationFee, registrationFee } from '@/config/pricing.js'
 import { formatPrice } from '@/utils/format.js'
 import { whatsappUrl } from '@/utils/whatsapp.js'
 
@@ -14,6 +14,7 @@ const emit = defineEmits(['join'])
 
 const pkr = (n) => formatPrice(n, currency)
 const total = computed(() => groupTotal(props.plan.group))
+const showFee = computed(() => hasRegistrationFee(props.plan.slug))
 const saving = computed(() => groupSaving(props.plan))
 const groupChat = computed(() =>
   whatsappUrl(
@@ -42,6 +43,10 @@ const groupChat = computed(() =>
       <p class="mt-2 flex items-baseline gap-2">
         <span class="whitespace-nowrap font-display text-[2.9rem] font-black leading-none tabular-nums text-bone">{{ pkr(plan.individual) }}</span>
         <span class="text-ash">/ month</span>
+      </p>
+      <p v-if="showFee" class="mt-3 inline-flex items-center gap-2 rounded-full border border-dashed border-bone/25 px-3 py-1.5 text-[0.8rem] text-ash">
+        <AppIcon name="info" class="h-3.5 w-3.5 shrink-0 text-ember" />
+        <span>{{ registrationFee.label }}: <strong class="font-semibold text-bone">{{ pkr(registrationFee.amount) }}</strong></span>
       </p>
     </div>
 

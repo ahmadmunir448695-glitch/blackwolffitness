@@ -32,7 +32,7 @@ export const club = {
      * WhatsApp buttons stay hidden on the live site until this is set.
      */
     whatsapp: '03054486950',
-    email: 'blackwolffitness@gmail.com',
+    email: 'blackwolffitnessclub@gmail.com',
     /** Default text pre-filled when someone taps a WhatsApp button. */
     whatsappGreeting: 'Hi Black Wolf Fitness Club, I would like to know more about your training programs.',
   },

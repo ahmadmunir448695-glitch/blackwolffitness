@@ -12,6 +12,22 @@
 export const currency = 'PKR'
 
 /**
+ * One-time registration fee, paid once when joining. Shown on the programs
+ * listed in `appliesTo` (Martial Arts & Fitness Membership). It is separate
+ * from the monthly fee and is never added into the monthly prices.
+ */
+export const registrationFee = {
+  amount: 2000,
+  label: 'One-Time Registration Fee',
+  appliesTo: ['taekwondo', 'boxing', 'mma', 'general-fitness'],
+}
+
+/** True when the registration fee applies to this program slug. */
+export function hasRegistrationFee(slug) {
+  return registrationFee.appliesTo.includes(slug)
+}
+
+/**
  * Martial Arts & Fitness Membership.
  *   individual       monthly fee for one person
  *   group.perPerson  monthly fee per person when `group.size` people join together
