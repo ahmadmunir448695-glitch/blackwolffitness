@@ -82,7 +82,7 @@ export const club = {
 
   /** Full profile URLs. Leave empty to hide an icon. */
   socials: {
-    instagram: 'https://www.instagram.com/blackwolffitness/',
+    instagram: 'https://www.instagram.com/blackwolffitnessclub/',
     facebook: '',
     youtube: '',
     tiktok: 'https://www.tiktok.com/@blackwolffitnessclub',
