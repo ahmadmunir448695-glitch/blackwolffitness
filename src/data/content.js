@@ -69,5 +69,5 @@ export const clubFacts = [
   { value: 7, label: 'Coached programs' },
   { value: 4, label: 'Combat disciplines' },
   { value: 1, label: 'Dedicated special kids program' },
-  { value: 0, label: 'Experience needed to start' },
+  { value: 6, label: 'Years of experience in all sports' },
 ]
