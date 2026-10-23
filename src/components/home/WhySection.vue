@@ -52,7 +52,7 @@ const pad = (n) => String(n).padStart(2, '0')
         <li
           v-for="(item, i) in whyBlackWolf"
           :key="item.title"
-          class="group relative overflow-hidden border border-line bg-ink/60 p-7 transition-[border-color,transform,background-color] duration-300 hover:-translate-y-1 hover:border-ember/60 hover:bg-ink"
+          class="fx-spot group relative overflow-hidden border border-line bg-ink/60 p-7 transition-[border-color,transform,background-color] duration-300 hover:-translate-y-1 hover:border-ember/60 hover:bg-ink"
         >
           <span
             class="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-ember transition-transform duration-500 group-hover:scale-x-100"

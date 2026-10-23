@@ -12,14 +12,14 @@
   --color-ink: #090909;
   --color-coal: #111111;
   --color-iron: #1a1a1a;
-  --color-line: #2b2b2b;
+  --color-line: #2c2925;
   --color-ember: #f7860f; /* logo orange: the one brand colour */
   --color-ember-hi: #ff9828; /* same orange, hover tint */
   --color-ember-lo: #f7860f;
   --color-blaze: #f7860f;
-  --color-bone: #ffffff;
-  --color-ash: #d0d0d0;
-  --color-smoke: #a1a1a1;
+  --color-bone: #f6efe4; /* warm ivory: headings and main text */
+  --color-ash: #cdc3b5; /* warm sand: body text */
+  --color-smoke: #a69c8f; /* labels and small print */
   --color-chalk: #f5f3ef;
   --color-chalk-2: #e8e5df;
   --color-graphite: #121212;
@@ -148,12 +148,24 @@
 
   .link-ember {
     color: var(--color-ember);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.45s var(--ease-out-strong), color 0.3s ease;
+  }
+  .link-ember:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
   }
   .link-ember:hover {
     color: var(--color-ember-hi);
+    animation: bw-underline 0.6s var(--ease-out-strong) 0.2s forwards;
+  }
+  @keyframes bw-underline {
+    from { background-size: 0% 1px; background-position: 0 100%; }
+    to { background-size: 100% 1px; background-position: 0 100%; }
   }
 
   /* Placeholder content the club still needs to supply. Deliberately visible. */
@@ -261,6 +273,76 @@
 .btn-molten:hover {
   background-color: var(--color-ember-hi);
   box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--color-ember) 70%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   Interaction effects
+   .fx-spot  card lifts, gains an orange edge and a light that follows the cursor
+   .fx-glow  the cursor light only (for cards packed in tight grids)
+   ------------------------------------------------------------------------ */
+.fx-spot,
+.fx-glow {
+  position: relative;
+  isolation: isolate;
+}
+.fx-spot {
+  transition:
+    transform 0.5s var(--ease-out-strong),
+    box-shadow 0.5s var(--ease-out-strong),
+    border-color 0.35s ease;
+}
+.fx-spot::before,
+.fx-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--color-ember) 12%, transparent),
+    transparent 65%
+  );
+}
+.fx-spot:hover::before,
+.fx-glow:hover::before {
+  opacity: 1;
+}
+.fx-spot:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--color-ember) 55%, transparent);
+  box-shadow:
+    0 28px 60px -30px color-mix(in srgb, var(--color-ember) 60%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-ember) 25%, transparent);
+}
+
+/* Buttons press in slightly; arrows inside links slide on hover. */
+.btn-molten:active,
+.btn-sheen:active {
+  transform: scale(0.97);
+}
+
+/* Text links: underline draws in from the left. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s var(--ease-out-strong), color 0.3s ease;
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-spot,
+  .fx-spot:hover {
+    transform: none;
+  }
 }
 
 /* Brand scrollbar: dark rail, ember thumb. */

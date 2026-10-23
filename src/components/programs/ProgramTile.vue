@@ -45,7 +45,7 @@ const pad = (n) => String(n).padStart(2, '0')
     </div>
   </article>
 
-  <article v-else class="zoom-hover group relative isolate flex h-full min-h-[20rem] flex-col justify-between overflow-hidden bg-coal">
+  <article v-else class="fx-spot zoom-hover group relative isolate flex h-full min-h-[20rem] flex-col justify-between overflow-hidden bg-coal">
     <SmartImage
       :image="program.image"
       :sizes="sizes"

@@ -12,7 +12,7 @@ defineProps({
 
 <template>
   <article
-    class="zoom-hover group relative flex h-full flex-col overflow-hidden border transition-[transform,border-color] duration-300 hover:-translate-y-1.5"
+    class="fx-spot zoom-hover group relative flex h-full flex-col overflow-hidden border transition-[transform,border-color] duration-300 hover:-translate-y-1.5"
     :class="tone === 'light' ? 'border-transparent bg-chalk-2 text-graphite' : 'border-line bg-coal hover:border-ember/50'"
   >
     <CoachAvatar :coach="coach" class="aspect-[4/5] w-full" />

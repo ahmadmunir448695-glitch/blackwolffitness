@@ -111,7 +111,7 @@ function toTop() {
         <h2 id="footer-contact" class="sr-only">Contact the club</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
           <!-- Phones -->
-          <div v-if="phones.length" class="contact-card md:col-span-2 lg:col-span-5">
+          <div v-if="phones.length" class="contact-card fx-glow md:col-span-2 lg:col-span-5">
             <div class="flex items-center gap-3">
               <span class="contact-icon"><AppIcon name="phone" class="h-5 w-5" /></span>
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Call or WhatsApp</p>
@@ -144,7 +144,7 @@ function toTop() {
           <a
             v-if="club.contact.email"
             :href="`mailto:${club.contact.email}`"
-            class="contact-card group flex flex-col lg:col-span-4"
+            class="contact-card fx-glow group flex flex-col lg:col-span-4"
           >
             <div class="flex items-center gap-3">
               <span class="contact-icon"><AppIcon name="mail" class="h-5 w-5" /></span>
@@ -160,7 +160,7 @@ function toTop() {
           </a>
 
           <!-- Socials -->
-          <div v-if="socials.length" class="contact-card flex flex-col lg:col-span-3">
+          <div v-if="socials.length" class="contact-card fx-glow flex flex-col lg:col-span-3">
             <div class="flex items-center gap-3">
               <span class="contact-icon"><AppIcon name="users" class="h-5 w-5" /></span>
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-smoke">Follow us</p>
@@ -355,7 +355,7 @@ function toTop() {
 }
 .ticker__word--outline {
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.25px rgb(255 255 255 / 0.45);
+  -webkit-text-stroke: 1.25px color-mix(in srgb, var(--color-bone) 45%, transparent);
 }
 
 /* Join panel */
@@ -465,7 +465,7 @@ function toTop() {
 }
 .wordmark__base {
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.28);
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-bone) 28%, transparent);
   transition: -webkit-text-stroke-color 0.8s var(--ease);
 }
 .wordmark__lit,

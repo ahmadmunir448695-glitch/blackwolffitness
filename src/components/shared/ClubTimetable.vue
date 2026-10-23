@@ -30,7 +30,7 @@ const range = (row) => `${formatTime(row.start)} – ${formatTime(row.end)}`
 <template>
   <div class="grid gap-4" :class="showClasses && showKids ? 'lg:grid-cols-[1.5fr_1fr]' : ''">
     <!-- Evening classes -->
-    <div v-if="showClasses" class="rounded-2xl border border-line bg-coal p-6 sm:p-8">
+    <div v-if="showClasses" class="fx-spot rounded-2xl border border-line bg-coal p-6 sm:p-8">
       <div class="flex items-center gap-3">
         <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-ember/10 text-ember ring-1 ring-ember/25">
           <AppIcon name="clock" class="h-5 w-5" />
@@ -41,8 +41,8 @@ const range = (row) => `${formatTime(row.start)} – ${formatTime(row.end)}`
         </div>
       </div>
       <ul class="mt-6 divide-y divide-line border-y border-line">
-        <li v-for="row in classes" :key="row.start" class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4">
-          <span class="font-display text-2xl font-bold tabular-nums tracking-wide text-bone sm:text-3xl">{{ range(row) }}</span>
+        <li v-for="row in classes" :key="row.start" class="group/row -mx-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-xl px-3 py-4 transition-colors duration-300 hover:bg-bone/[0.04]">
+          <span class="font-display text-2xl font-bold tabular-nums tracking-wide text-bone transition-[color,transform] duration-300 group-hover/row:translate-x-1 group-hover/row:text-ember sm:text-3xl">{{ range(row) }}</span>
           <span class="flex flex-wrap gap-2">
             <RouterLink
               v-for="slug in row.programs"
@@ -57,7 +57,7 @@ const range = (row) => `${formatTime(row.start)} – ${formatTime(row.end)}`
     </div>
 
     <!-- Special Kids -->
-    <div v-if="showKids" class="relative overflow-hidden rounded-2xl border border-ember/40 bg-coal p-6 sm:p-8">
+    <div v-if="showKids" class="fx-spot relative overflow-hidden rounded-2xl border border-ember/40 bg-coal p-6 sm:p-8">
       <div class="glow-ember pointer-events-none absolute -right-24 -top-24 h-64 w-64 opacity-60" aria-hidden="true" />
       <div class="relative flex items-center gap-3">
         <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-ember/10 text-ember ring-1 ring-ember/25">

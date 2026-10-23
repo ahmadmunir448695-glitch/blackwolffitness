@@ -24,7 +24,7 @@ const showingPlaceholders = computed(() => !real.length && isDev)
         <li
           v-for="(item, i) in items"
           :key="i"
-          class="flex flex-col justify-between gap-8 bg-coal p-7"
+          class="fx-spot flex flex-col justify-between gap-8 bg-coal p-7"
           :class="item.placeholder ? 'border border-dashed border-line' : ''"
         >
           <blockquote>

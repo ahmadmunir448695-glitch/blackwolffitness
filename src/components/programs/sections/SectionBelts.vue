@@ -29,7 +29,7 @@ function isDark(hex) {
           :class="isDark(belt.hex) ? 'text-bone' : 'text-ink'"
         >
           <span class="font-display text-2xl font-black uppercase" :class="isDark(belt.hex) ? '[text-shadow:0_1px_3px_rgb(0_0_0/0.45)]' : ''">{{ belt.name }}</span>
-          <span class="rounded-full px-2.5 py-1 text-xs font-bold" :class="isDark(belt.hex) ? 'bg-black/45 text-white' : 'bg-black/80 text-white'">Stage {{ i + 1 }}</span>
+          <span class="rounded-full px-2.5 py-1 text-xs font-bold" :class="isDark(belt.hex) ? 'bg-black/45 text-bone' : 'bg-black/80 text-bone'">Stage {{ i + 1 }}</span>
           <span v-if="belt.hex.toLowerCase() === '#0b0b0d'" class="absolute inset-x-0 bottom-0 h-1 bg-ember" aria-hidden="true" />
         </div>
         <p class="p-4 text-[0.95rem] leading-relaxed text-ash">{{ belt.text }}</p>

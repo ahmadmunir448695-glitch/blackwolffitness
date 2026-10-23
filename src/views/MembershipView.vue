@@ -57,7 +57,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
             <li
               v-for="plan in plans.data.value"
               :key="plan.id"
-              class="relative flex flex-col p-7"
+              class="fx-glow relative flex flex-col p-7"
               :class="plan.highlight ? 'bg-coal' : 'bg-ink'"
             >
               <span v-if="plan.highlight" class="absolute inset-x-0 top-0 h-1 bg-ember" aria-hidden="true" />
