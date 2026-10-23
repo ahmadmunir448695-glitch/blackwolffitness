@@ -207,7 +207,7 @@ export const coaches = [
     programs: ['taekwondo', 'special-kids-training'],
     photo: {
       src: new URL('../../assets/photos/coach-tariq-shah.jpg', import.meta.url).href,
-      alt: 'Tariq Shah in a dark suit and tie',
+      alt: 'Tariq Shah in a green Pakistan tracksuit with his arms folded',
     },
     bio: [
       'Tariq Shah is a 2nd Dan black belt and international Taekwondo fighter who has represented Pakistan at the G-2 Asian Championship. He is a multiple All Punjab gold medallist with six years of Taekwondo coaching experience.',
