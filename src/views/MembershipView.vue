@@ -7,7 +7,7 @@ import { membershipFaqs, programCatalog as programList, programName } from '@/se
 import { media } from '@/data/media.js'
 import { formatPrice } from '@/utils/format.js'
 import PageIntro from '@/components/shared/PageIntro.vue'
-import ScheduleTable from '@/components/shared/ScheduleTable.vue'
+import ClubTimetable from '@/components/shared/ClubTimetable.vue'
 import InquiryForm from '@/components/forms/InquiryForm.vue'
 import AsyncState from '@/components/ui/AsyncState.vue'
 import AppIcon from '@/components/ui/AppIcon.vue'
@@ -16,7 +16,6 @@ import FaqList from '@/components/ui/FaqList.vue'
 import WhatsAppLink from '@/components/layout/WhatsAppLink.vue'
 
 const plans = useAsync(({ signal }) => api.memberships.listPlans({ signal }), { initial: [] })
-const schedule = useAsync(({ signal }) => api.schedule.list({}, { signal }), { initial: [] })
 
 const anyPlaceholder = computed(() => (plans.data.value ?? []).some((p) => p.placeholder || p.price === null))
 const periodLabel = (period) => (period ? `per ${period}` : '')
@@ -124,20 +123,13 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
       </div>
     </section>
 
-    <!-- Schedule -->
+    <!-- Club timings -->
     <section v-reveal-auto class="py-16 lg:py-24" aria-labelledby="schedule-title">
       <div class="site-container">
-        <h2 id="schedule-title" class="font-display text-title font-black uppercase">Class schedule</h2>
-        <AsyncState class="mt-8" :loading="schedule.loading.value" :error="schedule.error.value" :empty="!schedule.data.value?.length" error-title="The schedule could not load" @retry="schedule.reload">
-          <template #loading><div class="skeleton h-48" aria-hidden="true" /></template>
-          <template #empty>
-            <p class="flex max-w-3xl items-start gap-3 border border-dashed border-line p-6 text-ash">
-              <AppIcon name="clock" class="mt-0.5 h-5 w-5 shrink-0 text-ember" />
-              The class timetable is being finalised. Request a trial below and the club will share the times that suit you.
-            </p>
-          </template>
-          <ScheduleTable :classes="schedule.data.value" show-program />
-        </AsyncState>
+        <p class="eyebrow">Timetable</p>
+        <h2 id="schedule-title" class="mt-4 font-display text-title font-black uppercase">Club timings</h2>
+        <p class="mt-4 max-w-2xl text-lg text-ash">Evening classes for Taekwondo, Boxing and MMA, and one-to-one Special Kids (ADHD) sessions in the morning.</p>
+        <ClubTimetable class="mt-10" />
       </div>
     </section>
 

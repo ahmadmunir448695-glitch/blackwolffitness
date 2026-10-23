@@ -57,7 +57,28 @@ export const club = {
    * Opening hours. TODO: replace with real hours.
    * Example: [{ days: 'Monday – Saturday', hours: '6:00 am – 10:00 pm' }, { days: 'Sunday', hours: 'Closed' }]
    */
-  hours: [],
+  hours: [
+    { days: 'Special Kids (ADHD)', hours: '9:00 am – 2:00 pm' },
+    { days: 'Classes', hours: '4:00 pm – 8:00 pm' },
+  ],
+
+  /**
+   * Club timetable, shown on the Membership page and each program page.
+   * Times are 24-hour 'HH:MM'. `programs` uses the program slugs.
+   */
+  timetable: {
+    specialKids: {
+      start: '09:00',
+      end: '14:00',
+      session: 'One-to-one sessions, 1 hour each',
+    },
+    classes: [
+      { start: '16:00', end: '17:00', programs: ['taekwondo'] },
+      { start: '17:00', end: '18:00', programs: ['taekwondo'] },
+      { start: '18:00', end: '19:00', programs: ['boxing', 'taekwondo'] },
+      { start: '19:00', end: '20:00', programs: ['boxing', 'mma'] },
+    ],
+  },
 
   /** Full profile URLs. Leave empty to hide an icon. */
   socials: {
