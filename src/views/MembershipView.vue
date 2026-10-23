@@ -1,24 +1,21 @@
 <script setup>
-import { computed } from 'vue'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { api } from '@/services/api'
-import { useAsync } from '@/composables/useAsync.js'
-import { membershipFaqs, programCatalog as programList, programName } from '@/services/catalog.js'
+import { membershipFaqs, programCatalog as programList } from '@/services/catalog.js'
 import { media } from '@/data/media.js'
-import { formatPrice } from '@/utils/format.js'
+import { personalServices, programMemberships } from '@/config/pricing.js'
 import PageIntro from '@/components/shared/PageIntro.vue'
 import ClubTimetable from '@/components/shared/ClubTimetable.vue'
 import InquiryForm from '@/components/forms/InquiryForm.vue'
-import AsyncState from '@/components/ui/AsyncState.vue'
 import AppIcon from '@/components/ui/AppIcon.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import FaqList from '@/components/ui/FaqList.vue'
 import WhatsAppLink from '@/components/layout/WhatsAppLink.vue'
+import ProgramPriceCard from '@/components/membership/ProgramPriceCard.vue'
+import ServicePriceCard from '@/components/membership/ServicePriceCard.vue'
 
-const plans = useAsync(({ signal }) => api.memberships.listPlans({ signal }), { initial: [] })
-
-const anyPlaceholder = computed(() => (plans.data.value ?? []).some((p) => p.placeholder || p.price === null))
-const periodLabel = (period) => (period ? `per ${period}` : '')
+/** Program picked with a card's "Join Now", pre-selected in the trial form. */
+const joinProgram = ref('')
 </script>
 
 <template>
@@ -26,79 +23,48 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
     <PageIntro
       title="Membership"
       eyebrow="Join the pack"
-      lead="Choose how you want to train, see what is included, and start with a trial session. The club will confirm current prices and timings with you directly."
+      lead="Clear monthly fees for Taekwondo, Boxing, MMA and General Fitness, group rates when three of you join together, and one-to-one personal or home training."
       :image="media.barbellClass"
     >
       <BaseButton href="#join" size="lg" icon-right="arrowRight">Join Now</BaseButton>
-      <WhatsAppLink message="Hi Black Wolf Fitness Club, could you share your membership plans and prices?" label="Ask about prices" />
+      <WhatsAppLink message="Hi Black Wolf Fitness Club, I would like to join. Could you help me choose a membership?" label="Ask on WhatsApp" />
     </PageIntro>
 
-    <!-- Plans -->
+    <!-- Martial Arts & Fitness Membership -->
     <section v-reveal-auto class="py-16 lg:py-24" aria-labelledby="plans-title">
       <div class="site-container">
-        <h2 id="plans-title" class="font-display text-title font-black uppercase">Membership plans</h2>
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="eyebrow">Monthly membership</p>
+            <h2 id="plans-title" class="mt-4 font-display text-title font-black uppercase">Martial Arts &amp; <span class="text-ember">Fitness</span></h2>
+            <p class="mt-4 text-lg text-ash">One clear monthly fee per program. Join with two others and each of you pays the group rate.</p>
+          </div>
+          <p class="inline-flex items-center gap-2.5 self-start rounded-full border border-ember/35 bg-ember/[0.06] px-4 py-2 text-sm text-bone lg:self-auto">
+            <AppIcon name="users" class="h-4 w-4 text-ember" /> Come as 3, save every month
+          </p>
+        </div>
 
-        <p v-if="anyPlaceholder" class="mt-5 flex max-w-3xl gap-2.5 border border-dashed border-ember/50 p-4 text-ash">
-          <AppIcon name="info" class="mt-0.5 h-5 w-5 shrink-0 text-ember" />
-          Plans and prices are being finalised. Contact the club for current options and fees.
-        </p>
+        <ul class="mt-10 grid gap-4 md:grid-cols-2">
+          <li v-for="plan in programMemberships" :key="plan.slug">
+            <ProgramPriceCard :plan="plan" @join="joinProgram = $event" />
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        <AsyncState class="mt-10" :loading="plans.loading.value" :error="plans.error.value" :empty="!plans.data.value?.length" error-title="Membership plans could not load" @retry="plans.reload">
-          <template #loading>
-            <div class="grid gap-px bg-line md:grid-cols-2 xl:grid-cols-4" aria-hidden="true">
-              <div v-for="n in 4" :key="n" class="skeleton h-96" />
-            </div>
-          </template>
-          <template #empty>
-            <p class="border border-dashed border-line p-8 text-ash">Membership plans will be published soon. Message the club for details.</p>
-          </template>
-
-          <ul class="grid gap-px border border-line bg-line md:grid-cols-2 xl:grid-cols-4">
-            <li
-              v-for="plan in plans.data.value"
-              :key="plan.id"
-              class="fx-glow relative flex flex-col p-7"
-              :class="plan.highlight ? 'bg-coal' : 'bg-ink'"
-            >
-              <span v-if="plan.highlight" class="absolute inset-x-0 top-0 h-1 bg-ember" aria-hidden="true" />
-              <h3 class="font-display text-3xl font-black uppercase leading-none">{{ plan.name }}</h3>
-              <p class="mt-3 min-h-[3rem] text-ash">{{ plan.summary }}</p>
-
-              <p class="mt-6 border-y border-line py-5">
-                <template v-if="plan.price !== null">
-                  <span class="font-display text-5xl font-black text-bone">{{ formatPrice(plan.price, plan.currency) }}</span>
-                  <span class="ml-1 text-ash">{{ periodLabel(plan.period) }}</span>
-                </template>
-                <template v-else>
-                  <span class="font-display text-3xl font-black text-bone">Price on request</span>
-                  <span class="mt-1 block text-sm text-smoke">{{ plan.period === 'month' ? 'Monthly fee' : `Fee ${periodLabel(plan.period)}` }}, to be confirmed</span>
-                </template>
-              </p>
-
-              <ul v-if="plan.otherPrices?.length" class="mt-4 space-y-1 text-sm">
-                <li v-for="row in plan.otherPrices" :key="row.label" class="flex justify-between gap-4">
-                  <span class="text-ash">{{ row.label }}</span>
-                  <span class="text-bone">{{ row.price !== null ? formatPrice(row.price, plan.currency) : 'Ask us' }}</span>
-                </li>
-              </ul>
-
-              <h4 class="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ash">Includes</h4>
-              <ul class="mt-2 space-y-2 text-[0.95rem]">
-                <li v-for="item in plan.inclusions" :key="item" class="flex gap-2.5">
-                  <AppIcon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-ember" />
-                  <span>{{ item }}</span>
-                </li>
-              </ul>
-
-              <h4 class="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ash">Programs</h4>
-              <p class="mt-2 text-sm text-ash">{{ plan.programs.map(programName).join(', ') }}</p>
-
-              <div class="mt-auto pt-8">
-                <BaseButton href="#join" :variant="plan.highlight ? 'primary' : 'outline'" block>Join Now</BaseButton>
-              </div>
-            </li>
-          </ul>
-        </AsyncState>
+    <!-- Personal Training & Home Training -->
+    <section v-reveal-auto class="border-t border-line py-16 lg:py-24" aria-labelledby="personal-title">
+      <div class="site-container">
+        <div class="max-w-2xl">
+          <p class="eyebrow">One-to-one coaching</p>
+          <h2 id="personal-title" class="mt-4 font-display text-title font-black uppercase">Personal &amp; Home <span class="text-ember">Training</span></h2>
+          <p class="mt-4 text-lg text-ash">Train one-to-one with a coach at the club, or have your coach come to your home.</p>
+        </div>
+        <ul class="mt-10 grid gap-4 lg:grid-cols-2">
+          <li v-for="(service, i) in personalServices" :key="service.id">
+            <ServicePriceCard :service="service" :featured="i === 1" />
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -146,7 +112,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
             <RouterLink :to="{ path: '/contact', query: { topic: 'parent' } }" class="link-ember">Send a parent inquiry</RouterLink>.
           </p>
         </div>
-        <InquiryForm variant="trial" heading="Trial session request" />
+        <InquiryForm variant="trial" heading="Trial session request" :initial-program="joinProgram" />
       </div>
     </section>
 

@@ -10,7 +10,7 @@ import AppIcon from '../ui/AppIcon.vue'
  */
 const props = defineProps({
   items: { type: Array, required: true },
-  interval: { type: Number, default: 2400 },
+  interval: { type: Number, default: 2000 },
 })
 
 const active = ref(0)

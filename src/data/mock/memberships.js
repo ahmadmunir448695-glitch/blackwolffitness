@@ -21,68 +21,16 @@
  * ============================================================================
  */
 
-export const membershipPlans = [
-  {
-    id: 'single-program',
-    name: 'Single program',
-    summary: 'Train in one program of your choice.',
-    price: null,
-    currency: 'PKR',
-    period: 'month',
-    otherPrices: [
-      { label: 'Admission / registration fee', price: null },
-    ],
-    programs: ['taekwondo', 'boxing', 'kickboxing', 'mma', 'general-fitness', 'gymnastics'],
-    inclusions: ['Coached group sessions in one program', 'Progress check-ins with your coach', 'Access to beginner sessions'],
-    highlight: false,
-    placeholder: true,
-  },
-  {
-    id: 'multi-program',
-    name: 'Multi-program',
-    summary: 'Combine martial arts with fitness, or train in more than one discipline.',
-    price: null,
-    currency: 'PKR',
-    period: 'month',
-    otherPrices: [
-      { label: 'Admission / registration fee', price: null },
-    ],
-    programs: ['taekwondo', 'boxing', 'kickboxing', 'mma', 'general-fitness', 'gymnastics'],
-    inclusions: ['Coached sessions across more than one program', 'Progress check-ins with your coaches', 'Goal-setting session'],
-    highlight: true,
-    placeholder: true,
-  },
-  {
-    id: 'kids-programs',
-    name: 'Kids & juniors',
-    summary: 'Age-appropriate classes for children and juniors.',
-    price: null,
-    currency: 'PKR',
-    period: 'month',
-    otherPrices: [],
-    programs: ['taekwondo', 'gymnastics'],
-    inclusions: ['Age-appropriate group classes', 'Regular feedback for parents'],
-    highlight: false,
-    placeholder: true,
-  },
-  {
-    id: 'special-kids-training',
-    name: 'Special Kids Training',
-    summary: 'Individualized support, planned with parents.',
-    price: null,
-    currency: 'PKR',
-    period: 'month',
-    otherPrices: [],
-    programs: ['special-kids-training'],
-    inclusions: ['Parent consultation before starting', 'Individualized activity planning', 'Progress updates for parents'],
-    highlight: false,
-    placeholder: true,
-  },
-]
+/**
+ * Legacy plan list (kept for the API layer). The Membership page now reads
+ * real prices from src/config/pricing.js.
+ */
+export const membershipPlans = []
 
 /** Membership FAQs. Answers avoid inventing terms — edit once policies are set. */
 export const membershipFaqs = [
-  { q: 'How much does membership cost?', a: 'Plans and prices are being finalised. Send us a message or WhatsApp and we will share current options.' },
+  { q: 'How much does membership cost?', a: 'Taekwondo is PKR 6,000, Boxing PKR 7,000, MMA PKR 10,000 and General Fitness PKR 8,000 per month for one person. When three people join together each pays the group rate shown on this page.' },
+  { q: 'How does the group rate work?', a: 'The group price is per person, per month, when three people enrol together. For example, three people in Taekwondo pay PKR 5,000 each, PKR 15,000 a month in total. The General Fitness rate is a family package for three members of the same family.' },
   { q: 'Can I try a class before joining?', a: 'Yes. Request a trial session using the form on this page and we will arrange a suitable class.' },
   { q: 'Can I train in more than one program?', a: 'Yes. Ask about multi-program options when you contact the club.' },
   { q: 'Do I need any experience to join?', a: 'No. Every program has beginner-friendly sessions and coaches will help you start at the right level.' },
