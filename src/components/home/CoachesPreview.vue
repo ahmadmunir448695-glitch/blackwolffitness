@@ -96,7 +96,7 @@ function medalTone(text) {
         <ul
           v-if="shown.length"
           v-reveal-stagger
-          class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+          class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
         >
           <li v-for="coach in shown" :key="coach.slug" class="w-[78%] shrink-0 snap-start sm:w-auto"><CoachCard :coach="coach" /></li>
         </ul>
