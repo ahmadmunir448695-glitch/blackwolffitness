@@ -58,7 +58,7 @@ const pad = (n) => String(n).padStart(2, '0')
             class="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-ember transition-transform duration-500 group-hover:scale-x-100"
             aria-hidden="true"
           />
-          <span class="font-display text-5xl font-black leading-none text-ember/55 transition-colors duration-300 group-hover:text-ember" aria-hidden="true">
+          <span class="font-display text-5xl font-black leading-none text-ember transition-colors duration-300 group-hover:text-ember" aria-hidden="true">
             {{ pad(i + 1) }}
           </span>
           <h3 class="mt-5 font-display text-2xl font-bold uppercase leading-none text-bone">{{ item.title }}</h3>

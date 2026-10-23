@@ -5,7 +5,7 @@ import WhatsAppLink from '../layout/WhatsAppLink.vue'
 import WolfMark from '../brand/WolfMark.vue'
 import { media } from '@/data/media.js'
 
-/** Full-width ember call to action for membership details and trial sessions. */
+/** Full-width call to action for membership details and trial sessions. */
 defineProps({
   heading: { type: String, default: 'Your first session starts with one message' },
   text: {
@@ -20,25 +20,25 @@ defineProps({
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden bg-ember text-ink">
-    <!-- Duotone photo on the right, cut on the claw angle -->
+  <section class="relative isolate overflow-hidden border-y border-line bg-ink">
+    <!-- Photo on the right, cut on the claw angle -->
     <div class="absolute inset-y-0 right-0 -z-10 hidden w-[44%] lg:block [clip-path:polygon(18%_0,100%_0,100%_100%,0_100%)]" aria-hidden="true">
       <div v-parallax="0.08" class="absolute -inset-y-[12%] inset-x-0">
         <SmartImage :image="image" alt="" sizes="45vw" :widths="[640, 960, 1280]" class="h-full w-full" img-class="grayscale contrast-125" />
       </div>
-      <div class="absolute inset-0 bg-ember mix-blend-multiply" />
-      <div class="absolute inset-0 bg-gradient-to-r from-ember via-ember/20 to-transparent" />
+      <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-ink/10" />
     </div>
-    <WolfMark class="absolute -left-24 -top-16 -z-10 h-[150%] text-ink/[0.06]" />
+    <div class="glow-ember pointer-events-none absolute -left-40 top-1/2 -z-10 h-[34rem] w-[34rem] -translate-y-1/2 opacity-50" aria-hidden="true" />
+    <WolfMark class="absolute -left-24 -top-16 -z-10 h-[150%] text-bone/[0.02]" />
 
     <div class="site-container py-16 lg:py-24">
       <div class="max-w-2xl">
-        <p v-reveal class="eyebrow text-ink!">Book a trial session</p>
+        <p v-reveal class="eyebrow">Book a trial session</p>
         <h2 v-reveal="{ delay: 80 }" class="mt-5 font-display text-display font-black uppercase">{{ heading }}</h2>
-        <p v-reveal="{ delay: 160 }" class="mt-5 max-w-xl text-lg font-medium leading-relaxed text-ink/90">{{ text }}</p>
+        <p v-reveal="{ delay: 160 }" class="mt-5 max-w-xl text-lg leading-relaxed text-ash">{{ text }}</p>
         <div v-reveal="{ delay: 240 }" class="mt-8 flex flex-wrap gap-3">
-          <BaseButton :to="primaryTo" variant="dark" size="lg" icon-right="arrowRight">{{ primaryLabel }}</BaseButton>
-          <WhatsAppLink variant="accent" :message="whatsappMessage" />
+          <BaseButton :to="primaryTo" size="lg" icon-right="arrowRight">{{ primaryLabel }}</BaseButton>
+          <WhatsAppLink :message="whatsappMessage" />
         </div>
       </div>
     </div>

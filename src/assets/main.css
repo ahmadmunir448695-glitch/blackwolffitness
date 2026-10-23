@@ -13,10 +13,10 @@
   --color-coal: #111111;
   --color-iron: #1a1a1a;
   --color-line: #2b2b2b;
-  --color-ember: #f7860f; /* logo orange */
-  --color-ember-hi: #ffa53a;
-  --color-ember-lo: #d96a00;
-  --color-blaze: #ff5e0e; /* hot end of the molten gradient */
+  --color-ember: #f7860f; /* logo orange: the one brand colour */
+  --color-ember-hi: #ff9828; /* same orange, hover tint */
+  --color-ember-lo: #f7860f;
+  --color-blaze: #f7860f;
   --color-bone: #ffffff;
   --color-ash: #d0d0d0;
   --color-smoke: #a1a1a1;
@@ -219,10 +219,7 @@
     -webkit-text-stroke: clamp(2px, 0.025em, 3px) var(--color-ember);
   }
   .text-gradient-ember {
-    background: linear-gradient(100deg, var(--color-ember-hi) 0%, var(--color-ember) 45%, var(--color-blaze) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--color-ember);
   }
   /* Soft ember light used behind heroes and bands. */
   .glow-ember {
@@ -259,13 +256,11 @@
 /* Molten fill for primary actions: logo orange flowing into a hotter blaze on hover. */
 .btn-molten {
   background-color: var(--color-ember);
-  background-image: linear-gradient(115deg, var(--color-ember-hi) 0%, var(--color-ember) 38%, var(--color-ember) 55%, var(--color-blaze) 100%);
-  background-size: 200% 100%;
-  background-position: 0% 0;
-  transition: background-position 0.6s var(--ease-out-strong), transform 0.2s ease, color 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 .btn-molten:hover {
-  background-position: 100% 0;
+  background-color: var(--color-ember-hi);
+  box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--color-ember) 70%, transparent);
 }
 
 /* Brand scrollbar: dark rail, ember thumb. */
@@ -276,7 +271,7 @@ html {
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-ink); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--color-ember-hi), var(--color-ember-lo));
+  background: var(--color-ember);
   border: 3px solid var(--color-ink);
   border-radius: 999px;
 }
