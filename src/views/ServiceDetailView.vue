@@ -35,21 +35,21 @@ import SectionFaq from '@/components/programs/sections/SectionFaq.vue'
 const registry = {
   intro: [SectionIntro, ''],
   focus: [SectionFocus, ''],
-  levels: [SectionLevels, 'bg-coal'],
+  levels: [SectionLevels, 'bg-ink'],
   session: [SectionSession, ''],
-  belts: [SectionBelts, 'bg-coal'],
+  belts: [SectionBelts, 'bg-ink'],
   combos: [SectionCombos, 'bg-ink'],
-  ranges: [SectionRanges, 'bg-coal'],
+  ranges: [SectionRanges, 'bg-ink'],
   feature: [SectionFeature, ''],
-  goalSteps: [SectionGoalSteps, 'bg-coal'],
-  sampleWeek: [SectionSampleWeek, 'bg-coal'],
-  skillLadder: [SectionSkillLadder, 'bg-coal'],
+  goalSteps: [SectionGoalSteps, 'bg-ink'],
+  sampleWeek: [SectionSampleWeek, 'bg-ink'],
+  skillLadder: [SectionSkillLadder, 'bg-ink'],
   ageGroups: [SectionAgeGroups, ''],
   support: [SectionSupport, ''],
-  safety: [SectionSafety, 'bg-coal'],
+  safety: [SectionSafety, 'bg-ink'],
   parentSteps: [SectionParentSteps, ''],
   benefits: [SectionBenefits, ''],
-  coaches: [SectionCoaches, 'bg-coal', true],
+  coaches: [SectionCoaches, 'bg-ink', true],
   schedule: [SectionSchedule, '', true],
   faq: [SectionFaq, ''],
 }
@@ -68,7 +68,6 @@ const sections = computed(() =>
     .filter((s) => registry[s.type])
     .map((s, i) => ({ data: s, key: `${s.type}-${i}`, component: markRaw(registry[s.type][0]), surface: registry[s.type][1], needsProgram: Boolean(registry[s.type][2]) })),
 )
-const isLight = computed(() => program.value?.hero?.variant === 'light')
 
 watch(program, (value) => {
   if (value) applyPageMeta(programPage(value))
@@ -85,7 +84,7 @@ watch(isNotFound, (value) => {
     <AsyncState :error="error" error-title="This program could not load" @retry="reload" />
   </div>
 
-  <div v-else :class="isLight ? 'tone-light' : ''">
+  <div v-else>
     <div v-if="loading" class="site-container pb-16 pt-[calc(var(--header-h)+4rem)]" aria-busy="true">
       <span class="sr-only">Loading program…</span>
       <div class="skeleton h-6 w-40" aria-hidden="true" />

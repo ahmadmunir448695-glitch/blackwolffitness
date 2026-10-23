@@ -55,7 +55,7 @@ function toTop() {
 </script>
 
 <template>
-  <footer class="relative isolate overflow-hidden bg-coal">
+  <footer class="relative isolate overflow-hidden bg-ink">
     <!-- Discipline ticker -->
     <div class="ticker relative border-y border-line bg-ink py-5" aria-hidden="true">
       <div class="ticker__track">

@@ -27,7 +27,7 @@ const isDev = import.meta.env.DEV
       </div>
     </section>
 
-    <section v-reveal-auto class="border-y border-line bg-coal py-16 lg:py-24" aria-label="Mission and vision">
+    <section v-reveal-auto class="border-y border-line bg-ink py-16 lg:py-24" aria-label="Mission and vision">
       <div class="site-container grid lg:grid-cols-2">
         <div class="py-8 lg:py-4 lg:pr-12">
           <h2 class="eyebrow">Our mission</h2>
@@ -65,7 +65,7 @@ const isDev = import.meta.env.DEV
       </div>
     </section>
 
-    <section v-reveal-auto class="border-t border-line bg-coal py-16 lg:py-24" aria-labelledby="gallery-title">
+    <section v-reveal-auto class="border-t border-line bg-ink py-16 lg:py-24" aria-labelledby="gallery-title">
       <div class="site-container">
         <h2 id="gallery-title" class="font-display text-title font-black uppercase">Training environment</h2>
         <GalleryGrid :items="gallery" class="mt-10" />

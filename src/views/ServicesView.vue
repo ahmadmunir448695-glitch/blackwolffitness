@@ -46,7 +46,7 @@ const guide = [
       </div>
     </section>
 
-    <section v-reveal-auto class="border-t border-line bg-coal py-16 lg:py-24" aria-labelledby="guide-title">
+    <section v-reveal-auto class="border-t border-line bg-ink py-16 lg:py-24" aria-labelledby="guide-title">
       <div class="site-container grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
         <div>
           <h2 id="guide-title" class="font-display text-title font-black uppercase">Which program is for me?</h2>

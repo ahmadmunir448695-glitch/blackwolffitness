@@ -8,7 +8,7 @@ const pad = (n) => String(n).padStart(2, '0')
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden border-y border-line bg-coal py-20 lg:py-32" aria-labelledby="why-title">
+  <section class="relative isolate overflow-hidden border-y border-line bg-ink py-20 lg:py-32" aria-labelledby="why-title">
     <span
       class="text-outline pointer-events-none absolute -right-8 top-6 -z-10 select-none font-display text-[clamp(8rem,22vw,20rem)] font-black uppercase leading-none text-bone/[0.06]"
       aria-hidden="true"

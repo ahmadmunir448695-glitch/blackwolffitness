@@ -4,7 +4,7 @@ import { clubFacts } from '@/data/content.js'
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden border-b border-line bg-coal" aria-label="The club in numbers">
+  <section class="relative isolate overflow-hidden border-b border-line bg-ink" aria-label="The club in numbers">
     <div class="glow-ember pointer-events-none absolute -right-32 -top-48 -z-10 h-[30rem] w-[30rem] opacity-60" aria-hidden="true" />
     <dl v-reveal-stagger class="site-container grid grid-cols-2 lg:grid-cols-4">
       <div

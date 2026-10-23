@@ -35,7 +35,7 @@ const useLayout = computed(() => regular.value.length === 6)
       <ProgramTile :program="program" :index="i + 1" :heading-level="headingLevel" />
     </li>
     <li v-if="featured" class="sm:col-span-2" :class="useLayout ? 'lg:col-span-7' : 'lg:col-span-12'">
-      <ProgramTile :program="featured" tone="light" :heading-level="headingLevel" sizes="(min-width: 1024px) 30vw, 100vw" />
+      <ProgramTile :program="featured" :heading-level="headingLevel" sizes="(min-width: 1024px) 30vw, 100vw" />
     </li>
   </ul>
 </template>

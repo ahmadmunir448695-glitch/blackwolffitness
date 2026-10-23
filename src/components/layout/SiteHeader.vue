@@ -1,6 +1,6 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import BrandLogo from '../brand/BrandLogo.vue'
 import AppIcon from '../ui/AppIcon.vue'
 import ServicesMenu from './ServicesMenu.vue'
@@ -16,9 +16,7 @@ const menuButton = ref(null)
 let lastY = 0
 
 const chatUrl = whatsappUrl()
-const route = useRoute()
-/** On the light Special Kids page a see-through bar turns grey, so it stays solid there. */
-const onLightPage = computed(() => route.path === '/services/special-kids-training')
+
 /** The logo already links home, so the desktop bar skips "Home" to stay uncluttered. */
 const desktopNav = mainNav.filter((item) => item.to !== '/')
 
@@ -66,7 +64,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
     <div
       class="relative mx-auto flex h-16 max-w-[84rem] items-center justify-between gap-4 rounded-full border pl-4 pr-2 transition-[background-color,border-color,box-shadow] duration-500 sm:pl-5"
       :class="
-        scrolled || mobileOpen || onLightPage
+        scrolled || mobileOpen
           ? 'border-white/10 bg-ink/90 shadow-[0_18px_50px_-20px_rgb(0_0_0/0.6)] backdrop-blur-xl'
           : 'border-white/[0.06] bg-ink/45 backdrop-blur-md'
       "

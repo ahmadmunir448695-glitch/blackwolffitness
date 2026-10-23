@@ -89,7 +89,7 @@ const reassurance = ['Parent consultation first', 'Individualized Support', 'Sup
         </ul>
         <div class="mt-8 flex flex-wrap gap-3">
           <BaseButton :to="contactLink" size="lg">{{ program.cta?.primaryLabel ?? 'Talk to us' }}</BaseButton>
-          <WhatsAppLink variant="light" :message="whatsappMessage" label="WhatsApp a coach" class="rounded-full" />
+          <WhatsAppLink :message="whatsappMessage" label="WhatsApp a coach" />
         </div>
       </div>
       <div class="relative">

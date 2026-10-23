@@ -61,7 +61,7 @@ onBeforeUnmount(() => applyJsonLd('ld-organization', null))
     <QuoteBand />
     <CoachesPreview />
 
-    <section class="border-t border-line bg-coal py-20 lg:py-28" aria-labelledby="environment-title">
+    <section class="border-t border-line bg-ink py-20 lg:py-28" aria-labelledby="environment-title">
       <div class="site-container">
         <div v-reveal class="max-w-2xl">
           <p class="eyebrow">The training floor</p>

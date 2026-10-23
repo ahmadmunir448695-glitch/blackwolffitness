@@ -104,7 +104,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
     </section>
 
     <!-- Program categories -->
-    <section v-reveal-auto class="border-t border-line bg-coal py-16 lg:py-24" aria-labelledby="categories-title">
+    <section v-reveal-auto class="border-t border-line bg-ink py-16 lg:py-24" aria-labelledby="categories-title">
       <div class="site-container grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
         <div>
           <h2 id="categories-title" class="font-display text-title font-black uppercase">Program categories</h2>
@@ -142,7 +142,7 @@ const periodLabel = (period) => (period ? `per ${period}` : '')
     </section>
 
     <!-- Trial / join -->
-    <section id="join" v-reveal-auto class="scroll-mt-24 border-t border-line bg-coal py-16 lg:py-24" aria-labelledby="join-title">
+    <section id="join" v-reveal-auto class="scroll-mt-24 border-t border-line bg-ink py-16 lg:py-24" aria-labelledby="join-title">
       <div class="site-container grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
         <div>
           <h2 id="join-title" class="font-display text-display font-black uppercase">Request a trial session</h2>
