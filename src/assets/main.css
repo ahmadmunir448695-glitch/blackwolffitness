@@ -497,3 +497,17 @@ html {
 .page-leave-to {
   opacity: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Page colours, outside any cascade layer so a host page (preview frame,
+   browser extension, reader mode) cannot repaint the site white.
+   ------------------------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+}
+html,
+body,
+#app {
+  background-color: var(--color-ink) !important;
+  color: var(--color-bone) !important;
+}
