@@ -39,7 +39,7 @@ export const club = {
 
   location: {
     /** Street address lines, e.g. ['Building name, Street', 'Area'] */
-    addressLines: ['114, St 3-A Plaza, 15-C, Lavender Block', 'Bahria Town'],
+    addressLines: ['114, St 3-A Plaza, 15-C, Lavandus Block', 'Bahria Town'],
     city: 'Lahore',
     region: 'Punjab',
     postalCode: '54000',
@@ -50,10 +50,10 @@ export const club = {
      * Google Business Profile once it is verified.
      */
     mapEmbedUrl:
-      'https://maps.google.com/maps?q=Black%20Wolf%20Fitness%20Club%2C%20Lavender%20Block%2C%20Bahria%20Town%2C%20Lahore&output=embed',
+      'https://maps.google.com/maps?q=Black%20Wolf%20Fitness%20Club%2C%20Lavandus%20Block%2C%20Bahria%20Town%2C%20Lahore&output=embed',
     /** Normal Google Maps link for "Get directions". */
     mapLink:
-      'https://www.google.com/maps/search/?api=1&query=Black%20Wolf%20Fitness%20Club%2C%20Lavender%20Block%2C%20Bahria%20Town%2C%20Lahore',
+      'https://www.google.com/maps/search/?api=1&query=Black%20Wolf%20Fitness%20Club%2C%20Lavandus%20Block%2C%20Bahria%20Town%2C%20Lahore',
   },
 
   /**
