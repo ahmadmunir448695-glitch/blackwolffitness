@@ -16,7 +16,9 @@ export const DEFAULT_IMAGE = '/og-image.png'
 
 /** ' in Lahore' once a city is configured, so local searches match. */
 export function localSuffix() {
-  return club.location.city ? ` in ${club.location.city}` : ''
+  const { area, city } = club.location
+  if (!city) return ''
+  return area ? ` in ${area}, ${city}` : ` in ${city}`
 }
 
 export function fullTitle(title) {

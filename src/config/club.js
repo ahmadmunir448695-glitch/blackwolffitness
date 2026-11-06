@@ -40,6 +40,8 @@ export const club = {
   location: {
     /** Street address lines, e.g. ['Building name, Street', 'Area'] */
     addressLines: ['114, St 3-A Plaza, 15-C, Lavandus Block', 'Bahria Town'],
+    /** Neighbourhood shown with the city in page titles, e.g. 'Bahria Town'. */
+    area: 'Bahria Town',
     city: 'Lahore',
     region: 'Punjab',
     postalCode: '54000',
