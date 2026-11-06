@@ -87,10 +87,12 @@ export function coachDisplayName(coach) {
 
 export function coachPage(coach) {
   const name = coachDisplayName(coach)
+  const aka = (coach.alternateNames ?? []).filter(Boolean)
+  const shownName = aka.length ? `${name} (${aka.join(', ')})` : name
   return {
     path: `/coaches/${coach.slug}`,
-    title: coach.name?.trim() ? `${name}, ${coach.role}` : `${coach.role}`,
-    description: `${name} at Black Wolf Fitness Club. Specializations: ${coach.specializations.join(', ')}.`,
+    title: coach.name?.trim() ? `${shownName}, ${coach.role}` : `${coach.role}`,
+    description: `${shownName}, ${coach.role} at ${SITE_NAME}${localSuffix()}. Specializations: ${coach.specializations.join(', ')}.`,
     image: socialImage(coach.photo?.src),
     // Keep placeholder profiles out of search results until they are real.
     noindex: Boolean(coach.placeholder),

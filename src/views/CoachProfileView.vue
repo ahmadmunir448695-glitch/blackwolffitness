@@ -1,11 +1,12 @@
 <script setup>
-import { computed, watch } from 'vue'
+import { computed, onBeforeUnmount, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { api } from '@/services/api'
 import { useAsync } from '@/composables/useAsync.js'
 import { programCatalog as programList } from '@/services/catalog.js'
 import { coachPage } from '@/seo/pages.js'
-import { applyPageMeta } from '@/seo/usePageMeta.js'
+import { applyJsonLd, applyPageMeta, siteUrl } from '@/seo/usePageMeta.js'
+import { personJsonLd } from '@/seo/structuredData.js'
 import CoachAvatar from '@/components/coaches/CoachAvatar.vue'
 import AsyncState from '@/components/ui/AsyncState.vue'
 import AppIcon from '@/components/ui/AppIcon.vue'
@@ -39,7 +40,13 @@ function medalTone(text) {
   return 'bg-ember'
 }
 
-watch(coach, (value) => value && applyPageMeta(coachPage(value)))
+watch(coach, (value) => {
+  if (!value) return
+  applyPageMeta(coachPage(value))
+  const photo = value.photo?.src ? new URL(value.photo.src, window.location.origin).href : ''
+  applyJsonLd('ld-person', personJsonLd(value, siteUrl, photo))
+})
+onBeforeUnmount(() => applyJsonLd('ld-person', null))
 watch(isNotFound, (value) => value && applyPageMeta({ title: 'Coach not found', noindex: true }))
 </script>
 

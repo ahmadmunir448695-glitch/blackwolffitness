@@ -38,19 +38,22 @@ export const club = {
   },
 
   location: {
-    /** TODO: street address lines, e.g. ['Building name, Street', 'Area'] */
-    addressLines: [],
-    city: '',
-    region: '',
-    postalCode: '',
-    country: '',
+    /** Street address lines, e.g. ['Building name, Street', 'Area'] */
+    addressLines: ['114, St 3-A Plaza, 15-C, Lavender Block', 'Bahria Town'],
+    city: 'Lahore',
+    region: 'Punjab',
+    postalCode: '54000',
+    country: 'PK',
     /**
      * Google Maps embed URL (Share → Embed a map → copy the src="" value).
-     * TODO: paste the embed URL once the address is confirmed.
+     * Currently an address search; replace with the pin from the club's
+     * Google Business Profile once it is verified.
      */
-    mapEmbedUrl: '',
+    mapEmbedUrl:
+      'https://maps.google.com/maps?q=Black%20Wolf%20Fitness%20Club%2C%20Lavender%20Block%2C%20Bahria%20Town%2C%20Lahore&output=embed',
     /** Normal Google Maps link for "Get directions". */
-    mapLink: '',
+    mapLink:
+      'https://www.google.com/maps/search/?api=1&query=Black%20Wolf%20Fitness%20Club%2C%20Lavender%20Block%2C%20Bahria%20Town%2C%20Lahore',
   },
 
   /**
@@ -59,7 +62,7 @@ export const club = {
    */
   hours: [
     { days: 'Special Kids (ADHD)', hours: '9:00 am – 2:00 pm' },
-    { days: 'Classes', hours: '4:00 pm – 8:00 pm' },
+    { days: 'Classes', hours: '4:00 pm – 9:00 pm' },
   ],
 
   /**

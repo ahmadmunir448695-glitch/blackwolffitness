@@ -4,6 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Public URL: turns on canonical links, absolute og:image URLs and sitemap.xml.
+  # Change this if the site moves to its own domain.
+  VITE_SITE_URL = "https://blackwolffitnessclub.netlify.app"
 
 # SPA fallback: files that exist (including the per-route HTML written by
 # scripts/postbuild.mjs) are served first; everything else gets index.html.

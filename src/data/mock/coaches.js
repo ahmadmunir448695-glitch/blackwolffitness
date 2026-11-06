@@ -38,6 +38,8 @@ export const coaches = [
   {
     slug: 'ahmad-munir',
     name: 'Ahmad Munir',
+    /** Other names people search for (used in page metadata and structured data). */
+    alternateNames: ['Ahmad TKD'],
     role: 'Taekwondo, Boxing & MMA Coach',
     specializations: ['Taekwondo', 'Boxing', 'MMA', 'Fitness', 'Gymnastics', 'Special Kids'],
     programs: ['taekwondo', 'boxing', 'mma', 'general-fitness', 'gymnastics', 'special-kids-training'],
@@ -85,6 +87,8 @@ export const coaches = [
   {
     slug: 'haidar-ali',
     name: 'Haidar Ali',
+    /** Other names people search for (used in page metadata and structured data). */
+    alternateNames: ['Haider Ali'],
     role: 'Taekwondo Coach & Fitness Trainer',
     specializations: ['Taekwondo', 'Boxing', 'Kickboxing', 'Gymnastics', 'Fitness', 'Special Kids'],
     programs: ['taekwondo', 'boxing', 'kickboxing', 'gymnastics', 'general-fitness', 'special-kids-training'],

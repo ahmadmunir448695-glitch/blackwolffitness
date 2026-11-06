@@ -9,12 +9,13 @@
  * 2. Writes dist/404.html (SPA fallback for hosts that use it).
  * 3. Writes robots.txt, and sitemap.xml when VITE_SITE_URL is set.
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
-import { dirname, join, resolve } from 'node:path'
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
+import { basename, dirname, extname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { loadEnv } from 'vite'
 import { allPages, fullTitle, DEFAULT_IMAGE, SITE_NAME } from '../src/seo/pages.js'
-import { organizationJsonLd } from '../src/seo/structuredData.js'
+import { organizationJsonLd, personJsonLd } from '../src/seo/structuredData.js'
+import { prerenderSource } from '../src/services/catalog.js'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
@@ -31,10 +32,33 @@ const escapeHtml = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
+// Images imported with `new URL('…', import.meta.url)` resolve to file:// paths
+// when Node reads the data files. Map them to the hashed copy Vite wrote in
+// dist/assets, so og:image and structured data point at a real public URL.
+const builtAssets = await readdir(join(dist, 'assets')).catch(() => [])
+function publicAssetPath(url) {
+  if (!url || !url.startsWith('file://')) return url
+  const file = basename(new URL(url).pathname)
+  const ext = extname(file)
+  const stem = file.slice(0, -ext.length)
+  const built = builtAssets.find((name) => name.startsWith(`${stem}-`) && name.endsWith(ext) && name.length - stem.length - ext.length <= 12)
+  return built ? `/assets/${built}` : ''
+}
+
 const absolute = (url) => {
+  url = publicAssetPath(url)
   if (!url) return ''
   if (/^https?:\/\//.test(url)) return url
   return siteUrl ? `${siteUrl}${url.startsWith('/') ? '' : '/'}${url}` : url
+}
+
+const jsonLdTag = (id, data) =>
+  data ? `<script type="application/ld+json" id="${id}">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>` : ''
+
+function coachFor(page) {
+  if (!page.key?.startsWith('coach:')) return null
+  const slug = page.key.slice('coach:'.length)
+  return prerenderSource.coaches.find((c) => c.slug === slug) ?? null
 }
 
 function headFor(page) {
@@ -56,9 +80,8 @@ function headFor(page) {
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
     `<meta name="twitter:image" content="${escapeHtml(image)}" />`,
-    page.key === 'home' || page.key === 'contact'
-      ? `<script type="application/ld+json" id="ld-organization">${JSON.stringify(organizationJsonLd(siteUrl)).replace(/</g, '\\u003c')}</script>`
-      : '',
+    page.key === 'home' || page.key === 'contact' ? jsonLdTag('ld-organization', organizationJsonLd(siteUrl)) : '',
+    coachFor(page) && !page.noindex ? jsonLdTag('ld-person', personJsonLd(coachFor(page), siteUrl, image)) : '',
   ]
   return tags.filter(Boolean).join('\n    ')
 }
