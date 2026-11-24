@@ -12,7 +12,7 @@ import { prerenderSource } from '../services/catalog.js'
 const { programs, coaches } = prerenderSource
 
 export const SITE_NAME = club.name
-export const DEFAULT_IMAGE = '/og-image.png'
+export const DEFAULT_IMAGE = '/og-image.jpg'
 
 /** ' in Lahore' once a city is configured, so local searches match. */
 export function localSuffix() {
@@ -38,33 +38,33 @@ export function socialImage(src) {
 export const staticPages = {
   home: {
     path: '/',
-    title: `${SITE_NAME} | Taekwondo, Boxing, MMA & Fitness Training${localSuffix()}`,
-    description: `Black Wolf Fitness Club offers coached Taekwondo, Boxing, Kickboxing, MMA, General Fitness, Gymnastics and Special Kids Training${localSuffix()}. Beginner-friendly sessions and structured programs.`,
+    title: `${SITE_NAME} | Taekwondo, Boxing, MMA & Fitness Club${localSuffix()}`,
+    description: `Black Wolf Fitness Club is a fitness, Taekwondo, Boxing, Kickboxing and MMA club${localSuffix()}, Punjab. Coached classes for kids and adults, gymnastics and Special Kids Training. Call 0305 4486950.`,
   },
   about: {
     path: '/about',
-    title: 'About Us: Our Mission, Coaching Philosophy & Values',
-    description: 'Learn about Black Wolf Fitness Club: our mission, vision, training philosophy and the values of discipline, respect, confidence, consistency and growth.',
+    title: `About Black Wolf Fitness Club: Martial Arts & Fitness Club${localSuffix()}`,
+    description: `Meet Black Wolf Fitness Club${localSuffix()}: our team, training hall, mission and values of discipline, respect, confidence, consistency and growth.`,
   },
   services: {
     path: '/services',
-    title: `Training Programs: Martial Arts, Boxing & Fitness${localSuffix()}`,
-    description: 'Explore every Black Wolf program: Taekwondo, Boxing, Kickboxing, Mixed Martial Arts, General Fitness, Gymnastics and Special Kids Training.',
+    title: `Taekwondo, Boxing, MMA, Kickboxing & Fitness Classes${localSuffix()}`,
+    description: `Every Black Wolf program${localSuffix()}: Taekwondo, Boxing, Kickboxing, Mixed Martial Arts (MMA), General Fitness, Gymnastics and Special Kids Training.`,
   },
   coaches: {
     path: '/coaches',
-    title: 'Our Coaches: Taekwondo, Boxing, MMA & Fitness',
-    description: 'Meet the Black Wolf Fitness Club coaching team. Filter coaches by specialization and view each coach’s experience and programs.',
+    title: `Taekwondo, Boxing & MMA Coaches${localSuffix()}`,
+    description: `Meet the Black Wolf Fitness Club coaches${localSuffix()}: Taekwondo black belts and championship medalists coaching Taekwondo, Boxing, MMA and fitness.`,
   },
   membership: {
     path: '/membership',
-    title: 'Membership Plans & Trial Sessions',
-    description: 'Membership options at Black Wolf Fitness Club. Compare plans, see what is included and request a trial session in any program.',
+    title: `Membership Fees & Trial Sessions${localSuffix()}`,
+    description: `Black Wolf Fitness Club membership fees${localSuffix()}. Compare Taekwondo, Boxing, MMA and fitness plans, family discounts, and book a trial session.`,
   },
   contact: {
     path: '/contact',
-    title: `Contact Us: Location, Hours & WhatsApp${localSuffix()}`,
-    description: 'Contact Black Wolf Fitness Club by phone, WhatsApp or message. Find our location, opening hours and social media links.',
+    title: `Contact Us: Location, Timings & WhatsApp${localSuffix()}`,
+    description: 'Black Wolf Fitness Club, 114 St 3-A Plaza, 15-C Lavandus Block, Bahria Town, Lahore. Call or WhatsApp 0305 4486950. Directions, timings and social links.',
   },
   notFound: {
     path: '/404',

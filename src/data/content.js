@@ -41,16 +41,16 @@ export const about = {
   ],
 }
 
-/** Training environment gallery (home + about). Replace with club photos. */
+/** Training environment gallery (About page). Real photos of the club. */
 export const gallery = [
-  { image: media.punchingBags, caption: 'Boxing drills', size: 'wide' },
-  { image: media.beltTying, caption: 'Martial arts', size: 'tall' },
-  { image: media.barbellClass, caption: 'Strength training', size: 'square' },
-  { image: media.boxingGloves, caption: 'Boxing', size: 'square' },
-  { image: media.gymnasticsBeam, caption: 'Gymnastics', size: 'tall' },
-  { image: media.kickboxingWoman, caption: 'Kickboxing', size: 'square' },
-  { image: media.boxJumps, caption: 'Conditioning', size: 'square' },
-  { image: media.groupInUniform, caption: 'Club activities', size: 'wide' },
+  { image: media.trophyWall, caption: 'Trophy wall', size: 'wide' },
+  { image: media.hallFlags, caption: 'Training hall', size: 'tall' },
+  { image: media.boxingGloves, caption: 'I can do it', size: 'tall' },
+  { image: media.beltTying, caption: 'Taekwondo', size: 'square' },
+  { image: media.clubBeltLineUp, caption: 'Belt line-up', size: 'square' },
+  { image: media.clubPack, caption: 'The pack', size: 'wide' },
+  { image: media.punchingBags, caption: 'Never give up', size: 'square' },
+  { image: media.clubSquad, caption: 'The squad', size: 'square' },
 ]
 
 const clubPhoto = (name) => new URL(`../assets/photos/${name}.jpg`, import.meta.url).href

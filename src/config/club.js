@@ -19,7 +19,7 @@ export const club = {
   tagline: 'Train Strong. Fight Smart. Become Unstoppable.',
   /** One or two sentences used in the footer and default SEO description. */
   summary:
-    'A combat sports and fitness club offering coached Taekwondo, Boxing, Kickboxing, MMA, General Fitness, Gymnastics and Special Kids Training for beginners and experienced athletes.',
+    'A combat sports and fitness club in Bahria Town, Lahore offering coached Taekwondo, Boxing, Kickboxing, MMA, General Fitness, Gymnastics and Special Kids Training for beginners and experienced athletes.',
 
   contact: {
     /** Display format, e.g. '+92 300 1234567'. */
@@ -46,16 +46,17 @@ export const club = {
     region: 'Punjab',
     postalCode: '54000',
     country: 'PK',
+    /** Exact position of the club's Google Maps pin (used for the map and for local search). */
+    geo: { latitude: 31.3642989, longitude: 74.1855058 },
+    /** Google Maps embed URL, pinned on the club's exact location. */
+    mapEmbedUrl: 'https://maps.google.com/maps?q=31.3642989,74.1855058&z=17&output=embed',
     /**
-     * Google Maps embed URL (Share → Embed a map → copy the src="" value).
-     * Currently an address search; replace with the pin from the club's
-     * Google Business Profile once it is verified.
+     * The club's Google Business Profile on Google Maps ("Get directions",
+     * reviews). The cid number stays the same even if the listing is renamed.
      */
-    mapEmbedUrl:
-      'https://maps.google.com/maps?q=Black%20Wolf%20Fitness%20Club%2C%20Lavandus%20Block%2C%20Bahria%20Town%2C%20Lahore&output=embed',
-    /** Normal Google Maps link for "Get directions". */
-    mapLink:
-      'https://www.google.com/maps/search/?api=1&query=Black%20Wolf%20Fitness%20Club%2C%20Lavandus%20Block%2C%20Bahria%20Town%2C%20Lahore',
+    mapLink: 'https://maps.google.com/?cid=6011791850163125550',
+    /** Areas the club serves, used in local-search structured data. */
+    areaServed: ['Bahria Town', 'Lahore', 'Punjab'],
   },
 
   /**

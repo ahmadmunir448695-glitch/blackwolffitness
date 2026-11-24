@@ -40,36 +40,36 @@ export const media = {
     credit: 'Figma AI',
   },
   kickTraining: {
-    src: photo('taekwondo-kick'),
-    alt: 'A taekwondo athlete throwing a high kick at a training partner',
-    credit: 'Figma AI',
+    src: photo('club-kid-high-kick'),
+    alt: 'A young Black Wolf Taekwondo student throwing a high front kick in the training hall with his coach',
+    credit: 'Black Wolf Fitness Club',
   },
   taekwondoPractice: {
-    src: photo('taekwondo-sparring'),
-    alt: 'Two taekwondo students in white uniforms practising kicks',
-    credit: 'Canva AI',
+    src: photo('club-kid-stretch'),
+    alt: 'A young Taekwondo student stretching into a side split on the mats at Black Wolf Fitness Club',
+    credit: 'Black Wolf Fitness Club',
   },
   beltTying: {
-    src: photo('belt-tying'),
-    alt: 'A martial artist in a white uniform tying a black belt',
-    credit: 'Nguyen Hung / Unsplash via Canva',
+    src: photo('club-dobok-black-belt'),
+    alt: 'A Taekwondo uniform (dobok) with an embroidered black belt on the training mats at Black Wolf Fitness Club',
+    credit: 'Black Wolf Fitness Club',
   },
 
   // Boxing
   boxingGloves: {
-    src: photo('boxing-gloves'),
-    alt: 'Black leather boxing gloves resting together',
-    credit: 'Bogdan Yukhymchuk / Unsplash via Canva',
+    src: photo('club-wall-gloves'),
+    alt: 'Boxing gloves mural with the words I CAN DO IT on the wall of Black Wolf Fitness Club',
+    credit: 'Black Wolf Fitness Club',
   },
   boxingPair: {
-    src: photo('boxing-pads'),
-    alt: 'A boxer throwing a jab into focus mitts held by his coach',
-    credit: 'Figma AI',
+    src: photo('club-kid-boxing'),
+    alt: 'A young boxer in blue gloves throwing a jab in the Black Wolf Fitness Club training hall',
+    credit: 'Black Wolf Fitness Club',
   },
   boxingSolo: {
-    src: photo('boxing-pads'),
-    alt: 'A boxer throwing a jab into focus mitts held by his coach',
-    credit: 'Figma AI',
+    src: photo('club-kid-boxing'),
+    alt: 'A young boxer in blue gloves throwing a jab in the Black Wolf Fitness Club training hall',
+    credit: 'Black Wolf Fitness Club',
   },
   boxingGloveRed: {
     src: photo('glove-pads-red'),
@@ -77,9 +77,9 @@ export const media = {
     credit: 'engin akyurt / Unsplash via Canva',
   },
   punchingBags: {
-    src: photo('boxing-drills'),
-    alt: 'A woman in boxing gloves throwing a punch during a drill',
-    credit: 'Anastase Maragos / Unsplash via Canva',
+    src: photo('club-hall-mirror-wide'),
+    alt: 'The Black Wolf Fitness Club training hall with mats, a mirror, kick shields and NEVER GIVE UP on the wall',
+    credit: 'Black Wolf Fitness Club',
   },
 
   // Kickboxing
@@ -133,14 +133,14 @@ export const media = {
     credit: 'Geert Pieters / Unsplash via Canva',
   },
   gymFloor: {
-    src: photo('gym-floor'),
-    alt: 'Racks of dumbbells on the gym floor',
-    credit: 'Unsplash via Canva',
+    src: photo('club-hall-flags-wide'),
+    alt: 'The Black Wolf Fitness Club training hall in Bahria Town, Lahore, with the Pakistan and Korea flags above the mats',
+    credit: 'Black Wolf Fitness Club',
   },
   gymDark: {
-    src: photo('gym-floor'),
-    alt: 'Racks of dumbbells on the gym floor',
-    credit: 'Unsplash via Canva',
+    src: photo('club-hall-flags-wide'),
+    alt: 'The Black Wolf Fitness Club training hall in Bahria Town, Lahore, with the Pakistan and Korea flags above the mats',
+    credit: 'Black Wolf Fitness Club',
   },
 
   // Gymnastics
@@ -162,23 +162,55 @@ export const media = {
 
   // Special Kids Training
   kidsSparring: {
-    src: photo('kids-martial-arts'),
-    alt: 'Children in martial arts uniforms practising a block with their coach',
-    credit: 'Figma AI',
+    src: photo('club-kid-cone-drill'),
+    alt: 'A smiling child carrying a training cone during an agility drill at Black Wolf Fitness Club',
+    credit: 'Black Wolf Fitness Club',
   },
   kidsKata: {
-    src: photo('kids-martial-arts'),
-    alt: 'Children in martial arts uniforms practising a block with their coach',
-    credit: 'Figma AI',
+    src: photo('club-kid-cone-drill'),
+    alt: 'A smiling child carrying a training cone during an agility drill at Black Wolf Fitness Club',
+    credit: 'Black Wolf Fitness Club',
   },
   kidsTrampoline: {
-    src: photo('kids-gymnastics'),
-    alt: 'Children practising handstands and balance with a coach in a gymnastics hall',
-    credit: 'Figma AI',
+    src: photo('club-kid-coordination'),
+    alt: 'A coach supporting a smiling child through a coordination drill beside a training cone',
+    credit: 'Black Wolf Fitness Club',
   },
   groupInUniform: {
-    src: photo('karate-beach'),
-    alt: 'A group of students in martial arts uniforms training together at sunset',
-    credit: 'Thao LEE / Unsplash via Canva',
+    src: photo('club-team-photo'),
+    alt: 'The Black Wolf Fitness Club coaches and athletes together at the club in Bahria Town, Lahore',
+    credit: 'Black Wolf Fitness Club',
+  },
+
+  // Real club photos (Black Wolf Fitness Club, Bahria Town, Lahore)
+  trophyWall: {
+    src: photo('club-trophy-wall'),
+    alt: 'Black Wolf Fitness Club Taekwondo wall with coloured belts, medals and trophies',
+    credit: 'Black Wolf Fitness Club',
+  },
+  hallFlags: {
+    src: photo('club-hall-flags'),
+    alt: 'The Black Wolf Fitness Club training hall with the Pakistan and Korea flags above the mats',
+    credit: 'Black Wolf Fitness Club',
+  },
+  hallMirror: {
+    src: photo('club-hall-mirror'),
+    alt: 'Training hall with mats, mirror, kick shields and NEVER GIVE UP and FOCUS ON on the wall',
+    credit: 'Black Wolf Fitness Club',
+  },
+  clubSquad: {
+    src: photo('club-team-kit'),
+    alt: 'Black Wolf Fitness Club team members in matching kit',
+    credit: 'Black Wolf Fitness Club',
+  },
+  clubBeltLineUp: {
+    src: photo('club-belt-line-up'),
+    alt: 'Five Black Wolf Taekwondo students in uniform with arms folded',
+    credit: 'Black Wolf Fitness Club',
+  },
+  clubPack: {
+    src: photo('club-the-pack'),
+    alt: 'A large group of Black Wolf Fitness Club members smiling together',
+    credit: 'Black Wolf Fitness Club',
   },
 }

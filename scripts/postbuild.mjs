@@ -14,7 +14,7 @@ import { basename, dirname, extname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { loadEnv } from 'vite'
 import { allPages, fullTitle, DEFAULT_IMAGE, SITE_NAME } from '../src/seo/pages.js'
-import { organizationJsonLd, personJsonLd } from '../src/seo/structuredData.js'
+import { organizationJsonLd, personJsonLd, websiteJsonLd } from '../src/seo/structuredData.js'
 import { prerenderSource } from '../src/services/catalog.js'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -80,6 +80,7 @@ function headFor(page) {
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`,
     `<meta name="twitter:image" content="${escapeHtml(image)}" />`,
+    page.key === 'home' ? jsonLdTag('ld-website', websiteJsonLd(siteUrl)) : '',
     page.key === 'home' || page.key === 'contact' ? jsonLdTag('ld-organization', organizationJsonLd(siteUrl)) : '',
     coachFor(page) && !page.noindex ? jsonLdTag('ld-person', personJsonLd(coachFor(page), siteUrl, image)) : '',
   ]
