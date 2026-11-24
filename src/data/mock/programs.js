@@ -29,7 +29,7 @@ export const programs = [
     tagline: 'Fast, precise kicking, flexibility and discipline, built belt by belt.',
     image: media.kickTraining,
     seo: {
-      title: 'Taekwondo Training for Kids, Teens & Adults',
+      title: 'Taekwondo Club & Classes for Kids, Teens & Adults',
       description:
         'Learn Taekwondo at Black Wolf Fitness Club: kicking technique, flexibility, balance, forms, controlled sparring and optional competition preparation for beginners and advanced students.',
     },
@@ -136,7 +136,7 @@ export const programs = [
     tagline: 'Sharp hands, smart footwork and serious conditioning.',
     image: media.boxingSolo,
     seo: {
-      title: 'Boxing Classes for Beginners & Experienced Boxers',
+      title: 'Boxing Club & Boxing Classes for All Levels',
       description:
         'Boxing classes at Black Wolf Fitness Club: punching technique, combinations, footwork, defence and conditioning, with coached progression from your first session to advanced training.',
     },
@@ -251,7 +251,7 @@ export const programs = [
     tagline: 'Punches and kicks combined into one complete striking system.',
     image: media.heavyBag,
     seo: {
-      title: 'Kickboxing Training for Fitness & Technique',
+      title: 'Kickboxing Classes for Fitness & Technique',
       description:
         'Kickboxing training at Black Wolf Fitness Club: punch and kick combinations, conditioning, agility and coordination, with beginner-to-advanced coaching.',
     },
@@ -351,7 +351,7 @@ export const programs = [
     tagline: 'Striking, clinch and ground fundamentals, trained as one system.',
     image: media.mmaRing,
     seo: {
-      title: 'MMA Training: Striking, Clinch & Ground Fundamentals',
+      title: 'MMA Club: Mixed Martial Arts Training',
       description:
         'Mixed Martial Arts training at Black Wolf Fitness Club: striking fundamentals, clinch work, ground training where offered, conditioning and technical development for all levels.',
     },
@@ -453,7 +453,7 @@ export const programs = [
     tagline: 'Strength, conditioning and mobility for everyday life.',
     image: media.barbellClass,
     seo: {
-      title: 'General Fitness, Strength & Conditioning Training',
+      title: 'Fitness Club & Gym: Strength & Conditioning',
       description:
         'General fitness training at Black Wolf Fitness Club: strength and conditioning, functional training, mobility and beginner-friendly programs with goal setting and progress reviews.',
     },

@@ -18,17 +18,23 @@ export function organizationJsonLd(siteUrl = '') {
   const { contact, location, socials } = club
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'SportsActivityLocation',
+    '@type': ['SportsClub', 'ExerciseGym'],
     name: club.name,
+    alternateName: ['Black Wolf', 'Blackwolffitnessclub', 'Black Wolf Fitness Club Lahore', 'Black Wolf Taekwondo Club'],
     description: club.summary,
+    keywords:
+      'fitness club Lahore, gym Bahria Town, taekwondo club Lahore, boxing club Lahore, MMA club Lahore, kickboxing Lahore, martial arts Bahria Town, special kids training Lahore',
   }
   if (siteUrl) {
     data['@id'] = `${siteUrl}/#club`
     data.url = siteUrl
-    data.image = `${siteUrl}/og-image.png`
+    data.image = `${siteUrl}/og-image.jpg`
     data.logo = `${siteUrl}/logo-512.png`
   }
-  if (contact.phone) data.telephone = contact.phone
+  if (contact.phone) {
+    // International format (+92 …) so Google matches it to the Maps listing.
+    data.telephone = location.country === 'PK' ? contact.phone.replace(/^0(\d{3})\s*/, '+92 $1 ') : contact.phone
+  }
   if (contact.email) data.email = contact.email
   if (location.addressLines.length || location.city) {
     data.address = {
@@ -40,8 +46,15 @@ export function organizationJsonLd(siteUrl = '') {
       ...(location.country ? { addressCountry: location.country } : {}),
     }
   }
+  if (location.geo) {
+    data.geo = { '@type': 'GeoCoordinates', latitude: location.geo.latitude, longitude: location.geo.longitude }
+  }
   if (location.mapLink) data.hasMap = location.mapLink
-  const sameAs = Object.values(socials).filter(Boolean)
+  if (location.areaServed?.length) {
+    data.areaServed = location.areaServed.map((name) => ({ '@type': 'Place', name }))
+  }
+  data.knowsAbout = ['Taekwondo', 'Boxing', 'Kickboxing', 'Mixed Martial Arts', 'Fitness training', 'Gymnastics', 'Special needs kids training']
+  const sameAs = [...Object.values(socials), location.mapLink].filter(Boolean)
   if (sameAs.length) data.sameAs = sameAs
   const coaches = realCoaches()
   if (coaches.length) {
@@ -53,6 +66,21 @@ export function organizationJsonLd(siteUrl = '') {
     }))
   }
   return data
+}
+
+/**
+ * schema.org WebSite, so Google shows "Black Wolf Fitness Club" as the
+ * site name in search results.
+ */
+export function websiteJsonLd(siteUrl = '') {
+  if (!siteUrl) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: club.name,
+    alternateName: ['Black Wolf', 'Black Wolf Fitness'],
+    url: `${siteUrl}/`,
+  }
 }
 
 /**

@@ -29,7 +29,7 @@ const pad = (n) => String(n).padStart(2, '0')
           <div v-reveal="'clip'">
             <div>
               <div class="cut-corner-lg zoom-hover relative aspect-[4/3] overflow-hidden">
-                <SmartImage :image="media.heavyBag" sizes="(min-width: 1024px) 40vw, 90vw" class="h-full w-full" />
+                <SmartImage :image="media.trophyWall" sizes="(min-width: 1024px) 40vw, 90vw" class="h-full w-full" />
                 <div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" aria-hidden="true" />
               </div>
             </div>
@@ -39,7 +39,7 @@ const pad = (n) => String(n).padStart(2, '0')
             class="absolute -bottom-8 -right-8 w-[42%] border-4 border-coal shadow-2xl shadow-black/60 sm:-right-16"
           >
             <div class="anim-float" style="--r: 2deg">
-              <SmartImage :image="media.boxingGloveRed" sizes="(min-width: 1024px) 18vw, 40vw" :widths="[320, 480, 768]" class="aspect-square" />
+              <SmartImage :image="media.boxingGloves" sizes="(min-width: 1024px) 18vw, 40vw" :widths="[320, 480, 768]" class="aspect-square" />
             </div>
           </div>
         </div>
