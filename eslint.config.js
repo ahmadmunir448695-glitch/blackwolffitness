@@ -3,7 +3,7 @@ import pluginVue from 'eslint-plugin-vue'
 import globals from 'globals'
 
 export default [
-  { ignores: ['dist/**', 'node_modules/**', 'coverage/**'] },
+  { ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'server/node_modules/**', 'server/storage/**'] },
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   {
@@ -46,6 +46,12 @@ export default [
   {
     files: ['scripts/**/*.mjs', 'vite.config.js', 'eslint.config.js'],
     languageOptions: { globals: { ...globals.node } },
+  },
+  {
+    // Championship portal API (Node)
+    files: ['server/**/*.js'],
+    languageOptions: { globals: { ...globals.node } },
+    rules: { 'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }] },
   },
   {
     files: ['tests/**/*.js'],

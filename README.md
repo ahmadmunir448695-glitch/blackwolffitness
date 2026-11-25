@@ -24,6 +24,17 @@ npm run dev               # http://localhost:5173
 | `npm run images:download` | Saves every photo to `public/images/` |
 | `npm run images:selfhost` | Downloads the photos and points `media.js` at the local copies, so the site no longer depends on Unsplash |
 
+## Championship portal
+
+`/portal` (menu item **Championships**) is a full championship management and online registration system: clubs register teams and athletes for Taekwondo championships, organizers configure events and review entries. It has its own API in `server/` (Node + SQLite).
+
+```bash
+npm --prefix server install && npm --prefix server run seed && npm --prefix server run dev   # API on :8787
+npm run dev                                                                               # site, /api proxied
+```
+
+Set `VITE_PORTAL_API_URL` on the website host once the API is deployed. Features, roles, API endpoints and deployment: [docs/CHAMPIONSHIP_PORTAL.md](docs/CHAMPIONSHIP_PORTAL.md).
+
 ## Pages
 
 | Route | Page |
