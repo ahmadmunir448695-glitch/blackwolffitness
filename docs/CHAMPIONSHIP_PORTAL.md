@@ -3,18 +3,18 @@
 Online Taekwondo championship management and registration, built into the website under `/portal` (menu item **Championships**).
 
 ```
-Website (Vue, src/portal)  ──HTTPS + Bearer token──►  API (Node/Express, server/)  ──►  SQLite + uploads folder
+Website (Vue, src/portal)  ──HTTPS + Bearer token──►  API (separate service)  ──►  SQLite + uploads folder
 ```
 
-The website was frontend-only, so the portal adds its own small API in `server/`. The website still deploys as a static site; the API runs as a separate Node service.
+> **The backend (`server/`) has been removed from this repository.** The portal pages in `src/portal/` remain, but they need an API that implements the endpoints below; until one is connected, the portal cannot sign in or load data. The original implementation is in git history (commit `167d103`).
+
+The website deploys as a static site; the API runs as a separate service.
 
 ## Run locally
 
 ```bash
-npm install && npm --prefix server install
-npm --prefix server run seed      # optional demo data (logins listed at the top of server/src/seed.js)
-npm --prefix server run dev       # API on http://localhost:8787/api
-npm run dev                       # website; /api is proxied to the API
+npm install
+npm run dev       # website; /api is proxied to an API on localhost:8787
 ```
 
 Open http://localhost:5173/portal.
@@ -44,7 +44,7 @@ Clubs only ever see their own data (other clubs' records answer 404). Every rule
 - **Notifications** (in-app) for submissions, decisions, payments, announcements. **Audit log** of important actions.
 - **Uploads**: JPG/PNG/WEBP/PDF only, size-limited, content checked against the file type, random file names. Athlete photos and documents are private and served only through permission checks.
 
-## Database
+## Database (removed implementation, for reference)
 
 SQLite (Node's built-in `node:sqlite`). Migrations live in `server/migrations/` and run automatically on start (`npm --prefix server run migrate` runs them by hand).
 
@@ -66,7 +66,7 @@ Tables: `users`, `clubs`, `teams`, `coaches`, `athletes`, `events`, `event_organ
 | Admin events | `GET/POST /admin/events`, `GET/PATCH/DELETE /admin/events/:id`, `POST …/publish`, `POST …/status`, `POST/DELETE …/files/:kind`, CRUD `…/age-divisions`, `…/weight-divisions` (+ `/bulk`), `…/belt-divisions`, `…/categories` (+ `/generate`), `POST …/copy-config`, `POST/DELETE …/announcements`, `PUT …/organizers` |
 | Admin | `GET /admin/stats`, `GET /admin/registrations`, `GET /admin/registrations/:id`, `POST /admin/registrations/:id/review`, `POST /admin/registrations/bulk-review`, `POST /admin/registrations/:id/payment`, `GET /admin/payments`, `POST /admin/payments/:id`, `GET /admin/teams`, `GET /admin/athletes`, `GET /admin/clubs`, `GET /admin/reports/categories`, `GET /admin/reports/{entries,athletes,teams,categories}.csv`, `GET/POST/PATCH /admin/users`, `GET /admin/audit` |
 
-## Deploying
+## Deploying an API (removed implementation, for reference)
 
 The API needs a Node 22.13+ host with a **persistent disk** (SQLite file and uploads), e.g. Render (web service + disk), Railway, Fly.io or a VPS.
 
@@ -80,7 +80,6 @@ Back up the database file and uploads folder regularly.
 ## Tests
 
 ```bash
-npm --prefix server test   # API: auth, registration workflow, eligibility, duplicates, uploads, review, payments, permissions, audit
 npm test                   # website
 ```
 
