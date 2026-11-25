@@ -11,7 +11,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  // Championship portal: in development, /api is forwarded to the local API (server/).
+  // Championship portal: in development, /api is forwarded to a local API on port 8787.
   server: {
     proxy: {
       '/api': { target: process.env.PORTAL_API_PROXY || 'http://localhost:8787', changeOrigin: true },

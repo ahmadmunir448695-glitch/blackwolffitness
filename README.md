@@ -26,14 +26,7 @@ npm run dev               # http://localhost:5173
 
 ## Championship portal
 
-`/portal` (menu item **Championships**) is a full championship management and online registration system: clubs register teams and athletes for Taekwondo championships, organizers configure events and review entries. It has its own API in `server/` (Node + SQLite).
-
-```bash
-npm --prefix server install && npm --prefix server run seed && npm --prefix server run dev   # API on :8787
-npm run dev                                                                               # site, /api proxied
-```
-
-Set `VITE_PORTAL_API_URL` on the website host once the API is deployed. Features, roles, API endpoints and deployment: [docs/CHAMPIONSHIP_PORTAL.md](docs/CHAMPIONSHIP_PORTAL.md).
+`/portal` (menu item **Championships**) is a full championship management and online registration system: clubs register teams and athletes for Taekwondo championships, organizers configure events and review entries. The portal pages are in `src/portal/`, but **the backend API is not part of this repo**, so sign-in, events and registrations don't work until an API is connected. Point `VITE_PORTAL_API_URL` at it (in development, `/api` is proxied to `localhost:8787`). The API contract the pages expect is in [docs/CHAMPIONSHIP_PORTAL.md](docs/CHAMPIONSHIP_PORTAL.md).
 
 ## Pages
 
