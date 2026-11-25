@@ -4,6 +4,7 @@ import { programSlugs, coachSlugs } from '@/services/catalog.js'
 import { isLive } from '@/services/api/config.js'
 import { staticPages } from '@/seo/pages.js'
 import { applyPageMeta } from '@/seo/usePageMeta.js'
+import { installPortalGuards, portalRoutes } from '@/portal/routes.js'
 
 /**
  * Unknown slugs go to the 404 page while data is local. Once a resource is
@@ -40,6 +41,8 @@ export const routes = [
   },
   { path: '/membership', name: 'membership', component: () => import('@/views/MembershipView.vue'), meta: { page: 'membership' } },
   { path: '/contact', name: 'contact', component: () => import('@/views/ContactView.vue'), meta: { page: 'contact' } },
+  // Championship management portal (src/portal)
+  ...portalRoutes,
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('@/views/NotFoundView.vue'), meta: { page: 'notFound' } },
 ]
 
@@ -65,6 +68,8 @@ const router = createRouter({
     return { top: 0 }
   },
 })
+
+installPortalGuards(router)
 
 router.afterEach((to) => {
   const key = to.meta.page

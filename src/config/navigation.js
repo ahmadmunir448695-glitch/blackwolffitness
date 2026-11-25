@@ -20,6 +20,7 @@ export const mainNav = [
   { label: 'Special Kids', to: '/services/special-kids-training', highlight: true },
   { label: 'Coaches', to: '/coaches' },
   { label: 'Membership', to: '/membership' },
+  { label: 'Championships', to: '/portal' },
   { label: 'Contact Us', to: '/contact' },
 ]
 
